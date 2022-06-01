@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Link, NavLink } from "react-router-dom";
 import { MenuIcon, XIcon, ShoppingCartIcon } from "@heroicons/react/outline";
+import { UserCircleIcon } from "@heroicons/react/solid";
 import logo from "../assets/Icon.svg";
 
 const isNotActiveStyle =
@@ -58,10 +59,6 @@ export default function Navbar() {
                   </div>
                 </div>
               </div>
-              {/* search input */}
-              {/* <div className="w-96">
-                <input type="text" className="min-w-2xl" />
-              </div> */}
 
               <div className="absolute inset-y-0 right-8 mt-2 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 ">
                 <div className=" text-gray-200 relative">
@@ -82,13 +79,9 @@ export default function Navbar() {
               {/* dropdown */}
               <Menu as="div" className="ml-3 relative">
                 <div>
-                  <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                  <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none">
                     <span className="sr-only">Open user menu</span>
-                    <img
-                      className="h-8 w-8 rounded-full"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      alt=""
-                    />
+                    <UserCircleIcon className="h-8 w-8 text-white" />
                   </Menu.Button>
                 </div>
                 <Transition
@@ -100,13 +93,13 @@ export default function Navbar() {
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white focus:outline-none">
                     <NavLink
                       to="/"
                       className={({ isActive }) =>
                         `${
                           isActive
-                            ? "text-gray-300 hover:text-white block px-4 py-2 text-sm bg-slate-500"
+                            ? "text-gray-500 block px-4 py-2 text-sm"
                             : "block px-4 py-2 text-sm text-gray-700 hover:bg-slate-400"
                         }`
                       }
@@ -118,7 +111,7 @@ export default function Navbar() {
                       className={({ isActive }) =>
                         `${
                           isActive
-                            ? "text-gray-300 hover:text-white block px-4 py-2 text-sm bg-slate-500"
+                            ? "text-gray-500 block px-4 py-2 text-sm"
                             : "block px-4 py-2 text-sm text-gray-700 hover:bg-slate-400"
                         }`
                       }
@@ -126,16 +119,16 @@ export default function Navbar() {
                       Dashboard
                     </NavLink>
                     <NavLink
-                      to="/test2"
+                      to="/register"
                       className={({ isActive }) =>
                         `${
                           isActive
-                            ? "text-gray-300 hover:text-white block px-4 py-2 text-sm bg-slate-500"
+                            ? "text-gray-500 block px-4 py-2 text-sm"
                             : "block px-4 py-2 text-sm text-gray-700 hover:bg-slate-400"
                         }`
                       }
                     >
-                      Logout
+                      Login
                     </NavLink>
                   </Menu.Items>
                 </Transition>
