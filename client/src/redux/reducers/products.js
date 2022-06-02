@@ -10,6 +10,7 @@ const product = (state = initialState, action) => {
     case GET_PRODUCTS:
       return {
         ...state,
+        products: payload,
       };
     default:
       return state;
