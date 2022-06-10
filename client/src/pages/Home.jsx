@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import FilterProducts from "../components/FilterProducts";
 import Header from "../components/Header";
 import { getProducts } from "../redux/actions/proudctActions";
 import Layout from "../utils/Layout";
@@ -11,9 +12,9 @@ const Home = () => {
   }, [dispatch]);
   return (
     <>
+      <Header />
       <Layout>
-        <Header />
-        <h1>products</h1>
+        <FilterProducts />
       </Layout>
     </>
   );

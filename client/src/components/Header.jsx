@@ -10,7 +10,7 @@ const Header = () => {
   const { products } = useSelector((state) => state.topProducts);
   const items = products.map((product) => {
     return (
-      <div className="h-[500px] flex justify-between items-center px-20 gradient">
+      <div className="h-[500px] flex justify-between items-center px-20 2xl:px-80 xl:px-60 gradient">
         <div className="basis-1/2">
           <h1 className="md:text-4xl text-lg">{product.name}</h1>
           <p className="md:text-2xl text-sm">{product.description}</p>
@@ -29,20 +29,10 @@ const Header = () => {
   useEffect(() => {
     dispatch(getTopProducts());
   }, [dispatch]);
-  // const responsive = {
-  //   0: {
-  //     items: 2,
-  //   },
-  //   758: {
-  //     items: 3,
-  //   },
-  //   1024: {
-  //     items: 4,
-  //   },
-  // };
+
   const renderPrevButton = ({ isDisabled }) => {
     return (
-      <p className="absolute -left-2 top-[35%] opacity-30 cursor-pointer">
+      <p className="absolute left-0 top-[40%] opacity-30 cursor-pointer">
         <ChevronLeftIcon className="w-16 h-16 lg:w-24 lg:h-24 text-gray-600" />
       </p>
     );
@@ -50,13 +40,13 @@ const Header = () => {
 
   const renderNextButton = ({ isDisabled }) => {
     return (
-      <p className="absolute -right-2 top-[35%] opacity-30 cursor-pointer">
+      <p className="absolute right-0 top-[40%] opacity-30 cursor-pointer">
         <ChevronRightIcon className="w-16 h-16 lg:w-24 lg:h-24 text-gray-600" />
       </p>
     );
   };
   return (
-    <div className="">
+    <div className="pt-14">
       <AliceCarousel
         mouseTracking
         items={items}
