@@ -12,7 +12,7 @@ const isActiveStyle =
 
 export default function Navbar() {
   return (
-    <Disclosure as="nav" className="bg-[#131921] fixed inset-x-0">
+    <Disclosure as="nav" className="bg-[#131921] fixed inset-x-0 z-10">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">

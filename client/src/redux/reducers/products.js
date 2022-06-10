@@ -1,10 +1,10 @@
-import { GET_PRODUCTS } from "../types";
+import { GET_PRODUCTS, GET_TOP_PRODUCTS } from "../types";
 
 const initialState = {
   products: [],
 };
 
-const product = (state = initialState, action) => {
+export const product = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case GET_PRODUCTS:
@@ -17,4 +17,17 @@ const product = (state = initialState, action) => {
   }
 };
 
-export default product;
+// get top products
+
+export const topProducts = (state = { products: [] }, action) => {
+  const { type, payload } = action;
+  switch (type) {
+    case GET_TOP_PRODUCTS:
+      return {
+        ...state,
+        products: payload,
+      };
+    default:
+      return state;
+  }
+};
