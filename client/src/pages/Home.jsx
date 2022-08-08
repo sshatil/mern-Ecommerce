@@ -7,8 +7,9 @@ import Layout from "../utils/Layout";
 
 const Home = () => {
   const dispatch = useDispatch();
+  const name = "kids";
   useEffect(() => {
-    dispatch(getProducts());
+    dispatch(getProducts(name));
   }, [dispatch]);
   return (
     <>

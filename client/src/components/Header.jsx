@@ -8,7 +8,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 const Header = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.topProducts);
-  const items = products.map((product) => {
+  const items = products?.map((product) => {
     return (
       <div className="h-[500px] flex justify-between items-center px-20 2xl:px-80 xl:px-60 gradient">
         <div className="basis-1/2">
