@@ -2,12 +2,13 @@ import axios from "axios";
 import { GET_PRODUCTS, GET_TOP_PRODUCTS } from "../types";
 
 export const getProducts =
-  (name, category, min, max, rating) => async (dispatch) => {
+  (name = "", category = "", min = "", max = "", rating = "", setLoading) =>
+  async (dispatch) => {
     try {
       const res = await axios.get(
-        // `/api/products?name=${name | " "}&category=${category}&min=${min}&max=${max}&rating=${rating}`
-        `/api/products?name=${name}`
+        `/api/products?name=${name}&category=${category}&min=${min}&max=${max}&rating=${rating}`
       );
+      setLoading(false);
       dispatch({
         type: GET_PRODUCTS,
         payload: res.data.products,

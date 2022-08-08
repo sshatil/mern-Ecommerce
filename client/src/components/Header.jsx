@@ -10,18 +10,26 @@ const Header = () => {
   const { products } = useSelector((state) => state.topProducts);
   const items = products?.map((product) => {
     return (
-      <div className="h-[500px] flex justify-between items-center px-20 2xl:px-80 xl:px-60 gradient">
-        <div className="basis-1/2">
+      <div className="h-[200px] md:h-[300px] flex flex-col justify-center items-center gradient gap-4">
+        {/* <div className="basis-1/2">
           <h1 className="md:text-4xl text-lg">{product.name}</h1>
           <p className="md:text-2xl text-sm">{product.description}</p>
           <h6 className="md:text-2xl text-sm font-bold">$ {product.price}</h6>
+        </div> */}
+        <div className="">
+          <h1 className="md:text-xl text-lg">{product.name.substr(0, 14)}</h1>
         </div>
-        <div className="flex justify-between items-center lg:w-96 lg:h-96 md:w-52 md:h-52 sm:w-36 sm:h-36 w-24 h-24">
+        <div className="flex justify-between items-center lg:w-36 lg:h-36 md:w-36 md:h-36 sm:w-36 sm:h-36 w-24 h-24">
           <img
             src={product.image}
             alt={product.name}
             className="w-full h-full object-center object-cover rounded-full"
           />
+        </div>
+        <div className="">
+          <h6 className="md:text-xl text-sm font-bold">
+            Price: ${product.price}
+          </h6>
         </div>
       </div>
     );
@@ -45,8 +53,24 @@ const Header = () => {
       </p>
     );
   };
+
+  const responsive = {
+    0: {
+      items: 1,
+    },
+    430: {
+      items: 2,
+    },
+    758: {
+      items: 3,
+    },
+    1024: {
+      items: 4,
+    },
+  };
   return (
-    <div className="pt-14">
+    <div className="mt-12">
+      <h1>Best seller product</h1>
       <AliceCarousel
         mouseTracking
         items={items}
@@ -54,7 +78,7 @@ const Header = () => {
         autoPlay
         autoPlayInterval={2000}
         animationDuration={1000}
-        // responsive={responsive}
+        responsive={responsive}
         // disableButtonsControls
         disableDotsControls={true}
         renderPrevButton={renderPrevButton}
