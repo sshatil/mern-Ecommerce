@@ -10,12 +10,7 @@ const Header = () => {
   const { products } = useSelector((state) => state.topProducts);
   const items = products?.map((product) => {
     return (
-      <div className="h-[200px] md:h-[300px] flex flex-col justify-center items-center gradient gap-4">
-        {/* <div className="basis-1/2">
-          <h1 className="md:text-4xl text-lg">{product.name}</h1>
-          <p className="md:text-2xl text-sm">{product.description}</p>
-          <h6 className="md:text-2xl text-sm font-bold">$ {product.price}</h6>
-        </div> */}
+      <div className="h-[200px] md:h-[300px] flex flex-col justify-center items-center gradient gap-4 cursor-pointer">
         <div className="">
           <h1 className="md:text-xl text-lg">{product.name.substr(0, 14)}</h1>
         </div>
@@ -69,8 +64,7 @@ const Header = () => {
     },
   };
   return (
-    <div className="mt-12">
-      <h1>Best seller product</h1>
+    <div className="pt-14">
       <AliceCarousel
         mouseTracking
         items={items}
