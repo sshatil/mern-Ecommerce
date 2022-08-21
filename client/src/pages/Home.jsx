@@ -16,13 +16,13 @@ const Home = () => {
       {/* <Banner /> */}
       {/* <Input setName={setName} /> */}
       <Header />
-      <Layout>
-        <div className="flex gap-2">
-          <SideBar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
-          <Products showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
-        </div>
-        {/* <FilterProducts /> */}
-      </Layout>
+      {/* <Layout> */}
+      <div className="flex gap-2">
+        <SideBar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+        <Products showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+      </div>
+      {/* <FilterProducts /> */}
+      {/* </Layout> */}
     </>
   );
 };
