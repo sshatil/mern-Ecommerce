@@ -17,7 +17,7 @@ const Home = () => {
       {/* <Input setName={setName} /> */}
       <Header />
       {/* <Layout> */}
-      <div className="flex gap-2">
+      <div className="flex gap-2 w-full">
         <SideBar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
         <Products showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
       </div>

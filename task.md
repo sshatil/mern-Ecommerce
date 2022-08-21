@@ -5,3 +5,6 @@
 # Sidebar
 * sidebar ui design[x]
 * fetch category list[x]
+# Product list
+* design product list[x]
+* product details page[]
