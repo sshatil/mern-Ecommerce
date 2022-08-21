@@ -2,11 +2,11 @@ import axios from "axios";
 import { GET_CATEGORIES, GET_PRODUCTS, GET_TOP_PRODUCTS } from "../types";
 
 export const getProducts =
-  (name = "", category = "", min = "", max = "", rating = "", setLoading) =>
+  (name = "", categoryName = "", min = "", max = "", rating = "", setLoading) =>
   async (dispatch) => {
     try {
       const res = await axios.get(
-        `/api/products?name=${name}&category=${category}&min=${min}&max=${max}&rating=${rating}`
+        `/api/products?name=${name}&category=${categoryName}&min=${min}&max=${max}&rating=${rating}`
       );
       setLoading(false);
       dispatch({
