@@ -20,7 +20,6 @@ const Products = ({ showSidebar, setShowSidebar }) => {
   // useEffect(() => {
   //   setName("");
   // }, [loading]);
-  console.log(name);
   return (
     <div className="w-full overflow-hidden">
       {/* sidebar btn */}
