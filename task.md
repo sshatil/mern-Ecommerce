@@ -5,6 +5,7 @@
 # Sidebar
 * sidebar ui design[x]
 * fetch category list[x]
+* filter by rating[x]
 * price range[]
 # Product list
 * design product list[x]

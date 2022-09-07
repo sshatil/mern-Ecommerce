@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategoryList, getProducts } from "../redux/actions/proudctActions";
 import { RatingStar } from "rating-star";
-import star from "../assets/star.svg";
-import starBlank from "../assets/star-blank.svg";
 
 const SideBar = ({ showSidebar, setShowSidebar }) => {
   const dispatch = useDispatch();
-  const [price, setPrice] = useState([]);
+  // const [price, setPrice] = useState([]);
   const [name, setName] = useState("");
   const [categoryName, setCategoryName] = useState("");
   const [min, setMin] = useState("");
@@ -33,11 +31,10 @@ const SideBar = ({ showSidebar, setShowSidebar }) => {
     dispatch(getProducts(name, categoryName, min, max, rating, setLoading));
   }, [dispatch, name, categoryName, min, max, rating]);
 
-  const handlePrices = (e) => {
-    setPrice(e.target.value);
-    // setMin(price([0]));
-  };
-  console.log(price[0]);
+  // const handlePrices = (e) => {
+  //   setPrice(e.target.value);
+  //   // setMin(price([0]));
+  // };
   return (
     <>
       <div

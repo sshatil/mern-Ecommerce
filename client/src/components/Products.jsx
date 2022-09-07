@@ -16,7 +16,7 @@ const Products = ({ showSidebar, setShowSidebar }) => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     dispatch(getProducts(name, categoryName, min, max, rating, setLoading));
-  }, [dispatch, name, categoryName, min, max, rating]);
+  }, [dispatch, name, categoryName, min, max, rating, loading]);
   // useEffect(() => {
   //   setName("");
   // }, [loading]);
@@ -39,9 +39,6 @@ const Products = ({ showSidebar, setShowSidebar }) => {
             {products.map((product) => (
               <>
                 <SingleProduct product={product} key={product._id} />
-                {/* <SingleProduct product={product} key={product._id} />
-                <SingleProduct product={product} key={product._id} />
-                <SingleProduct product={product} key={product._id} /> */}
               </>
             ))}
           </div>

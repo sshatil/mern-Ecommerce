@@ -4,10 +4,11 @@ import "react-alice-carousel/lib/alice-carousel.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getTopProducts } from "../redux/actions/proudctActions";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
+import axios from "axios";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.topProducts);
+  const { products, loading } = useSelector((state) => state.topProducts);
   const items = products?.map((product) => {
     return (
       <div className="h-[200px] md:h-[300px] flex flex-col justify-center items-center gradient gap-4 cursor-pointer">

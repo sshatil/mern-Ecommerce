@@ -1,4 +1,9 @@
-import { GET_CATEGORIES, GET_PRODUCTS, GET_TOP_PRODUCTS } from "../types";
+import {
+  GET_CATEGORIES,
+  GET_PRODUCTS,
+  GET_SINGLE_PRODUCT,
+  GET_TOP_PRODUCTS,
+} from "../types";
 
 const initialState = {
   products: [],
@@ -17,14 +22,37 @@ export const product = (state = initialState, action) => {
   }
 };
 
+// get single product
+
+export const singleProduct = (
+  state = { product: [], loading: true },
+  action
+) => {
+  const { type, payload } = action;
+  switch (type) {
+    case GET_SINGLE_PRODUCT:
+      return {
+        ...state,
+        loading: false,
+        product: payload,
+      };
+    default:
+      return state;
+  }
+};
+
 // get top products
 
-export const topProducts = (state = { products: [] }, action) => {
+export const topProducts = (
+  state = { products: [], loading: true },
+  action
+) => {
   const { type, payload } = action;
   switch (type) {
     case GET_TOP_PRODUCTS:
       return {
         ...state,
+        loading: false,
         products: payload,
       };
     default:

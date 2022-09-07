@@ -11,6 +11,7 @@ import Layout from "../utils/Layout";
 
 const Home = () => {
   const [showSidebar, setShowSidebar] = useState(true);
+  const dispatch = useDispatch();
   return (
     <>
       {/* <Banner /> */}
