@@ -10,3 +10,9 @@
 # Product list
 * design product list[x]
 * product details page[]
+
+# Auth
+* register[x]
+* login[]
+
+# Admin Panel

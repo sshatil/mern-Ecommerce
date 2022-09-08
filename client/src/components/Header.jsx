@@ -4,30 +4,32 @@ import "react-alice-carousel/lib/alice-carousel.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getTopProducts } from "../redux/actions/proudctActions";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
-import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
   const { products, loading } = useSelector((state) => state.topProducts);
   const items = products?.map((product) => {
     return (
-      <div className="h-[200px] md:h-[300px] flex flex-col justify-center items-center gradient gap-4 cursor-pointer">
-        <div className="">
-          <h1 className="md:text-xl text-lg">{product.name.substr(0, 14)}</h1>
+      <Link to={`/${product._id}`}>
+        <div className="h-[200px] md:h-[300px] flex flex-col justify-center items-center gradient gap-4 cursor-pointer">
+          <div className="">
+            <h1 className="md:text-xl text-lg">{product.name.substr(0, 14)}</h1>
+          </div>
+          <div className="flex justify-between items-center lg:w-36 lg:h-36 md:w-36 md:h-36 sm:w-36 sm:h-36 w-24 h-24">
+            <img
+              src={product.image}
+              alt={product.name}
+              className="w-full h-full object-center object-cover rounded-full"
+            />
+          </div>
+          <div className="">
+            <h6 className="md:text-xl text-sm font-bold">
+              Price: ${product.price}
+            </h6>
+          </div>
         </div>
-        <div className="flex justify-between items-center lg:w-36 lg:h-36 md:w-36 md:h-36 sm:w-36 sm:h-36 w-24 h-24">
-          <img
-            src={product.image}
-            alt={product.name}
-            className="w-full h-full object-center object-cover rounded-full"
-          />
-        </div>
-        <div className="">
-          <h6 className="md:text-xl text-sm font-bold">
-            Price: ${product.price}
-          </h6>
-        </div>
-      </div>
+      </Link>
     );
   });
   useEffect(() => {
@@ -66,19 +68,23 @@ const Header = () => {
   };
   return (
     <div className="pt-14">
-      <AliceCarousel
-        mouseTracking
-        items={items}
-        infinite
-        autoPlay
-        autoPlayInterval={2000}
-        animationDuration={1000}
-        responsive={responsive}
-        // disableButtonsControls
-        disableDotsControls={true}
-        renderPrevButton={renderPrevButton}
-        renderNextButton={renderNextButton}
-      />
+      {loading ? (
+        <h1 className="h-full">Loading...</h1>
+      ) : (
+        <AliceCarousel
+          mouseTracking
+          items={items}
+          infinite
+          autoPlay
+          autoPlayInterval={2000}
+          animationDuration={1000}
+          responsive={responsive}
+          // disableButtonsControls
+          disableDotsControls={true}
+          renderPrevButton={renderPrevButton}
+          renderNextButton={renderNextButton}
+        />
+      )}
     </div>
   );
 };
