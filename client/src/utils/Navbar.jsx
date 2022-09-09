@@ -1,9 +1,11 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { MenuIcon, XIcon, ShoppingCartIcon } from "@heroicons/react/outline";
 import { UserCircleIcon } from "@heroicons/react/solid";
 import logo from "../assets/Icon.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/actions/authActions";
 
 const isNotActiveStyle =
   "text-gray-300 hover:text-white px-3 py-2 text-lg font-sm";
@@ -11,6 +13,9 @@ const isActiveStyle =
   "text-white px-3 py-2 text-lg font-sm border-b-[3px] border-[#40BFFF]";
 
 export default function Navbar() {
+  const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
   return (
     <Disclosure as="nav" className="bg-[#131921] fixed inset-x-0 z-10">
       {({ open }) => (
@@ -118,18 +123,34 @@ export default function Navbar() {
                     >
                       Dashboard
                     </NavLink>
-                    <NavLink
-                      to="/register"
-                      className={({ isActive }) =>
-                        `${
-                          isActive
-                            ? "text-gray-500 block px-4 py-2 text-sm"
-                            : "block px-4 py-2 text-sm text-gray-700 hover:bg-slate-400"
-                        }`
-                      }
-                    >
-                      Login
-                    </NavLink>
+                    {!isAuthenticated ? (
+                      <NavLink
+                        to="/login"
+                        className={({ isActive }) =>
+                          `${
+                            isActive
+                              ? "text-gray-500 block px-4 py-2 text-sm"
+                              : "block px-4 py-2 text-sm text-gray-700 hover:bg-slate-400"
+                          }`
+                        }
+                      >
+                        Login
+                      </NavLink>
+                    ) : (
+                      <NavLink
+                        to="/login"
+                        onClick={() => dispatch(logout())}
+                        className={({ isActive }) =>
+                          `${
+                            isActive
+                              ? "text-gray-500 block px-4 py-2 text-sm"
+                              : "block px-4 py-2 text-sm text-gray-700 hover:bg-slate-400"
+                          }`
+                        }
+                      >
+                        Logout
+                      </NavLink>
+                    )}
                   </Menu.Items>
                 </Transition>
               </Menu>
