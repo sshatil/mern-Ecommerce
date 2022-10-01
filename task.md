@@ -10,9 +10,11 @@
 # Product list
 * design product list[x]
 * product details page[]
+* show similar product list in product details page[]
 
 # Auth
 * register[x]
-* login[]
+* login[*]
+* logout[*]
 
 # Admin Panel

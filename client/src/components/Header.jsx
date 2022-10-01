@@ -11,7 +11,7 @@ const Header = () => {
   const { products, loading } = useSelector((state) => state.topProducts);
   const items = products?.map((product) => {
     return (
-      <Link to={`/${product._id}`}>
+      <Link to={`/details/${product._id}`}>
         <div className="h-[200px] md:h-[300px] flex flex-col justify-center items-center gradient gap-4 cursor-pointer">
           <div className="">
             <h1 className="md:text-xl text-lg">{product.name.substr(0, 14)}</h1>
