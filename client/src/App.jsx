@@ -6,6 +6,7 @@ import Navbar from "./utils/Navbar";
 import { Toaster } from "react-hot-toast";
 import Login from "./pages/auth/Login";
 import GoToTop from "./utils/GoToTop";
+import Cart from "./pages/Cart";
 
 const App = () => {
   return (
@@ -13,11 +14,13 @@ const App = () => {
       <Navbar />
       <Toaster position="bottom-center" />
       <GoToTop />
+      <Cart />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/details/:id" element={<ProductDetails />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        {/* <Route path="/cart" element={<Cart />} /> */}
       </Routes>
     </BrowserRouter>
   );

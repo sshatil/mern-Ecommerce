@@ -6,6 +6,7 @@ import { UserCircleIcon } from "@heroicons/react/solid";
 import logo from "../assets/Icon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/actions/authActions";
+import { handleOpenCartPage } from "../redux/actions/cartActions";
 
 const isNotActiveStyle =
   "text-gray-300 hover:text-white px-3 py-2 text-lg font-sm";
@@ -15,7 +16,11 @@ const isActiveStyle =
 export default function Navbar() {
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.auth);
+  const { cartItems } = useSelector((state) => state.cart);
   const navigate = useNavigate();
+  const setOpen = () => {
+    dispatch(handleOpenCartPage());
+  };
   return (
     <Disclosure as="nav" className="bg-[#131921] fixed inset-x-0 z-10">
       {({ open }) => (
@@ -65,21 +70,22 @@ export default function Navbar() {
                 </div>
               </div>
 
-              <div className="absolute inset-y-0 right-8 mt-2 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 ">
+              <div
+                // to="/cart"
+                className="absolute inset-y-0 right-8 mt-2 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 cursor-pointer"
+                onClick={setOpen}
+              >
                 <div className=" text-gray-200 relative">
                   <h1
-                    className="text-center font-bold text-sm  absolute -top-5 left-4 w-5 h-5 rounded-full bg-sky-600 cursor-pointer"
+                    className="text-center font-bold text-sm  absolute -top-5 left-4 w-5 h-5 rounded-full bg-sky-600"
                     aria-hidden="true"
                   >
-                    0
+                    {cartItems.length}
                   </h1>
                 </div>
-                <Link
-                  to="/cart"
-                  className="mr-2 p-1 rounded-full text-gray-400 focus:outline-none"
-                >
+                <div className="mr-2 p-1 rounded-full text-gray-400 focus:outline-none">
                   <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
-                </Link>
+                </div>
               </div>
               {/* dropdown */}
               <Menu as="div" className="ml-3 relative">

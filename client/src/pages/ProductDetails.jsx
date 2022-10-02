@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSingleProduct } from "../redux/actions/proudctActions";
 import Layout from "../utils/Layout";
 import SingleProduct from "../components/SingleProduct";
+import { addToCart } from "../redux/actions/cartActions";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -13,7 +14,7 @@ function classNames(...classes) {
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
-  const { category, image, name, price, rating, description, numReviews } =
+  const { _id, category, image, name, price, rating, description, numReviews } =
     useSelector((state) => state.singleProduct.product);
   const { loading, product } = useSelector((state) => state.singleProduct);
   // all product
@@ -29,6 +30,10 @@ const ProductDetails = () => {
   //   const similarProduct = products.filter((p) => p.category === category);
   //   console.log(similarProduct);
   // }, [category, loading]);
+
+  const handleAddToCard = (id) => {
+    dispatch(addToCart(id));
+  };
   return (
     <Layout>
       <div className="pt-20">
@@ -77,7 +82,7 @@ const ProductDetails = () => {
                       </a>
                     </div>
                   </div> */}
-                  <form className="mt-10">
+                  <div className="mt-10">
                     {/* description */}
                     <div>
                       <h3 className="">Description</h3>
@@ -88,12 +93,13 @@ const ProductDetails = () => {
                     </div>
 
                     <button
-                      type="submit"
+                      type="button"
                       className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      onClick={() => handleAddToCard(_id)}
                     >
                       Add to bag
                     </button>
-                  </form>
+                  </div>
                 </div>
                 {/* right side end */}
               </div>

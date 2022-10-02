@@ -8,3 +8,5 @@ export const REGISTER_FAIL = "REGISTER_FAIL";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT_USER = "LOGOUT_USER";
+export const ADD_TO_CART = "ADD_TO_CART";
+export const REMOVE_TO_CART = "REMOVE_TO_CART";
