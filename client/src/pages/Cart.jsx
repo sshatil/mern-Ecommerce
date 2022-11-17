@@ -4,69 +4,34 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   handleOpenCartPage,
   handleCloseCartPage,
+  removeProductFromCart,
+  increaseProductQuantity,
+  decreaseProductQuantity,
 } from "../redux/actions/cartActions";
-import { XCircleIcon } from "@heroicons/react/solid";
-
-const products = [
-  {
-    id: 1,
-    name: "Throwback Hip Bag",
-    href: "#",
-    color: "Salmon",
-    price: "$90.00",
-    quantity: 1,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg",
-    imageAlt:
-      "Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.",
-  },
-  {
-    id: 2,
-    name: "Medium Stuff Satchel",
-    href: "#",
-    color: "Blue",
-    price: "$32.00",
-    quantity: 1,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg",
-    imageAlt:
-      "Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.",
-  },
-  {
-    id: 2,
-    name: "Medium Stuff Satchel",
-    href: "#",
-    color: "Blue",
-    price: "$32.00",
-    quantity: 1,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg",
-    imageAlt:
-      "Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.",
-  },
-  {
-    id: 2,
-    name: "Medium Stuff Satchel",
-    href: "#",
-    color: "Blue",
-    price: "$32.00",
-    quantity: 1,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg",
-    imageAlt:
-      "Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.",
-  },
-  // More products...
-];
+import { XCircleIcon, PlusIcon, MinusIcon } from "@heroicons/react/outline";
 
 const Cart = () => {
-  const { open } = useSelector((state) => state.shoppingPage);
   const dispatch = useDispatch();
+  const { open } = useSelector((state) => state.shoppingPage);
+  const { cartItems } = useSelector((state) => state.cart);
   const setOpen = () => {
     dispatch(handleOpenCartPage());
   };
   const handleClose = () => {
     dispatch(handleCloseCartPage());
+  };
+
+  const handleRemove = (id) => {
+    dispatch(removeProductFromCart(id));
+  };
+  console.log(cartItems);
+  const increase = (id, qty) => {
+    console.log("test");
+    dispatch(increaseProductQuantity(id, qty));
+  };
+  const decrease = (id, qty) => {
+    console.log("test");
+    dispatch(decreaseProductQuantity(id, qty));
   };
 
   return (
@@ -117,6 +82,13 @@ const Cart = () => {
                           </button>
                         </div>
                       </div>
+                      {cartItems.length === 0 && (
+                        <div className="flex justify-center items-center h-4/5">
+                          <h1 className="text-2xl font-bold">
+                            Your cart is empty
+                          </h1>
+                        </div>
+                      )}
 
                       <div className="mt-8">
                         <div className="flow-root">
@@ -124,12 +96,12 @@ const Cart = () => {
                             role="list"
                             className="-my-6 divide-y divide-gray-200"
                           >
-                            {products.map((product) => (
-                              <li key={product.id} className="flex py-6">
+                            {cartItems.map((product) => (
+                              <li key={product._id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
-                                    src={product.imageSrc}
-                                    alt={product.imageAlt}
+                                    src={product.image}
+                                    alt={product.name}
                                     className="h-full w-full object-cover object-center"
                                   />
                                 </div>
@@ -137,26 +109,48 @@ const Cart = () => {
                                 <div className="ml-4 flex flex-1 flex-col">
                                   <div>
                                     <div className="flex justify-between text-base font-medium text-gray-900">
-                                      <h3>
-                                        <a href={product.href}>
-                                          {product.name}
-                                        </a>
-                                      </h3>
-                                      <p className="ml-4">{product.price}</p>
+                                      <h3>{product.name}</h3>
+                                      <p className="ml-4">$ {product.price}</p>
                                     </div>
-                                    <p className="mt-1 text-sm text-gray-500">
+                                    {/* <p className="mt-1 text-sm text-gray-500">
                                       {product.color}
-                                    </p>
+                                    </p> */}
                                   </div>
                                   <div className="flex flex-1 items-end justify-between text-sm">
-                                    <p className="text-gray-500">
-                                      Qty {product.quantity}
-                                    </p>
-
+                                    {/* <p className="text-gray-500">
+                                      Qty {product.countInStock}
+                                    </p> */}
+                                    <div className="flex gap-3">
+                                      <button className="p-1 rounded-sm btn-color">
+                                        <MinusIcon
+                                          className="h-4 w-4 text-white"
+                                          onClick={() => {
+                                            if (product.qty > 1) {
+                                              decrease(
+                                                product._id,
+                                                product.qty
+                                              );
+                                            }
+                                          }}
+                                        />
+                                      </button>
+                                      <h6>{product.qty}</h6>
+                                      <button className="p-1 rounded-sm btn-color">
+                                        <PlusIcon
+                                          className="h-4 w-4 text-white"
+                                          onClick={() =>
+                                            increase(product._id, product.qty)
+                                          }
+                                        />
+                                      </button>
+                                    </div>
                                     <div className="flex">
                                       <button
                                         type="button"
                                         className="font-medium text-indigo-600 hover:text-indigo-500"
+                                        onClick={() =>
+                                          handleRemove(product._id)
+                                        }
                                       >
                                         Remove
                                       </button>

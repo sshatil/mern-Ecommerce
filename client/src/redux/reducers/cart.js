@@ -1,4 +1,9 @@
-import { ADD_TO_CART, REMOVE_TO_CART } from "../types";
+import {
+  ADD_TO_CART,
+  DECREASE_QUANTITY,
+  INCREASE_QUANTITY,
+  REMOVE_TO_CART,
+} from "../types";
 
 const allCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
@@ -22,13 +27,28 @@ export const cart = (state = initialState, action) => {
       } else {
         return {
           ...state,
-          cartItems: [...state.cartItems, payload],
+          cartItems: [...state.cartItems, { ...payload, qty: 1 }],
         };
       }
     case REMOVE_TO_CART:
       return {
         ...state,
         cartItems: state.cartItems.filter((i) => i._id !== payload),
+      };
+
+    case INCREASE_QUANTITY:
+      return {
+        ...state,
+        cartItems: state.cartItems.map((i) =>
+          i._id === payload.id ? { ...i, qty: payload.qty + 1 } : i
+        ),
+      };
+    case DECREASE_QUANTITY:
+      return {
+        ...state,
+        cartItems: state.cartItems.map((i) =>
+          i._id === payload.id ? { ...i, qty: payload.qty - 1 } : i
+        ),
       };
 
     default:

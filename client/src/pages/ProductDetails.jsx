@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSingleProduct } from "../redux/actions/proudctActions";
 import Layout from "../utils/Layout";
 import SingleProduct from "../components/SingleProduct";
-import { addToCart } from "../redux/actions/cartActions";
+import { addToCart, handleOpenCartPage } from "../redux/actions/cartActions";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -33,6 +33,7 @@ const ProductDetails = () => {
 
   const handleAddToCard = (id) => {
     dispatch(addToCart(id));
+    dispatch(handleOpenCartPage());
   };
   return (
     <Layout>
@@ -94,7 +95,7 @@ const ProductDetails = () => {
 
                     <button
                       type="button"
-                      className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 hover:bg-indigo-700 py-3 px-8 text-base font-medium text-white "
                       onClick={() => handleAddToCard(_id)}
                     >
                       Add to bag

@@ -1,5 +1,10 @@
 import axios from "axios";
-import { ADD_TO_CART, REMOVE_TO_CART } from "../types";
+import {
+  ADD_TO_CART,
+  DECREASE_QUANTITY,
+  INCREASE_QUANTITY,
+  REMOVE_TO_CART,
+} from "../types";
 
 export const addToCart = (id) => async (dispatch, getState) => {
   try {
@@ -18,11 +23,28 @@ export const addToCart = (id) => async (dispatch, getState) => {
   }
 };
 
-export const removeProductFromCart = (id) => (dispatch) => {
+export const removeProductFromCart = (id) => (dispatch, getState) => {
   dispatch({
     type: REMOVE_TO_CART,
     payload: id,
   });
+  localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
+};
+
+// product quantity change
+export const increaseProductQuantity = (id, qty) => (dispatch, getState) => {
+  dispatch({
+    type: INCREASE_QUANTITY,
+    payload: { id, qty },
+  });
+  localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
+};
+export const decreaseProductQuantity = (id, qty) => (dispatch, getState) => {
+  dispatch({
+    type: DECREASE_QUANTITY,
+    payload: { id, qty },
+  });
+  localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
 };
 
 export const handleOpenCartPage = () => (dispatch) => {
