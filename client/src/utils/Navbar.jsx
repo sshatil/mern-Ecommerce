@@ -144,7 +144,7 @@ export default function Navbar() {
                       </NavLink>
                     ) : (
                       <NavLink
-                        to="/login"
+                        to="/"
                         onClick={() => dispatch(logout())}
                         className={({ isActive }) =>
                           `${

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // import { toast } from "react-toastify";
 import Layout from "../../utils/Layout";
@@ -11,8 +11,9 @@ import toast from "react-hot-toast";
 
 const Register = () => {
   const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -30,12 +31,9 @@ const Register = () => {
     if (password !== confirmPassword) {
       toast.error("Password don't match");
     } else {
-      dispatch(registerUser({ name, email, password }, toast));
+      dispatch(registerUser({ name, email, password }, toast, from, navigate));
     }
   };
-  if (isAuthenticated) {
-    navigate("/cart");
-  }
 
   return (
     <Layout>

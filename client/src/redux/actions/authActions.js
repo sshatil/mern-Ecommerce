@@ -2,7 +2,7 @@ import axios from "axios";
 import { LOGIN_SUCCESS, LOGOUT_USER, REGISTER_SUCCESS } from "../types";
 
 export const registerUser =
-  ({ name, email, password }, toast) =>
+  ({ name, email, password }, toast, from, navigate) =>
   async (dispatch) => {
     try {
       const res = await axios.post("/api/users/register", {
@@ -12,6 +12,7 @@ export const registerUser =
       });
       if (res.data) {
         localStorage.setItem("eshop-auth", JSON.stringify(res.data));
+        navigate(from, { replace: true });
       }
       dispatch({
         type: REGISTER_SUCCESS,
@@ -23,13 +24,14 @@ export const registerUser =
   };
 
 export const loginUser =
-  ({ email, password }, toast) =>
+  ({ email, password }, toast, from, navigate) =>
   async (dispatch) => {
     const loginData = { email, password };
     try {
       const res = await axios.post("/api/users/login", loginData);
       if (res.data) {
         localStorage.setItem("eshop-auth", JSON.stringify(res.data));
+        navigate(from, { replace: true });
       }
       dispatch({
         type: LOGIN_SUCCESS,

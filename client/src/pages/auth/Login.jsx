@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../utils/Layout";
 
@@ -10,8 +10,9 @@ import toast from "react-hot-toast";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -20,16 +21,14 @@ const Login = () => {
     confirmPassword: "",
   });
   const { email, password } = formData;
+
   const handleData = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginUser({ email, password }, toast));
+    dispatch(loginUser({ email, password }, toast, from, navigate));
   };
-  if (isAuthenticated) {
-    navigate("/cart");
-  }
 
   return (
     <Layout>
@@ -101,6 +100,7 @@ const Login = () => {
                   Or{" "}
                   <Link
                     to="/register"
+                    state={{ from: { pathname: from } }}
                     className="font-medium text-indigo-600 hover:text-indigo-500"
                   >
                     Register your account
