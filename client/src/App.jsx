@@ -9,6 +9,7 @@ import GoToTop from "./utils/GoToTop";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import PrivateRoute from "./utils/PrivateRoute";
+import UserProfile from "./pages/UserProfile";
 
 const App = () => {
   return (
@@ -27,6 +28,14 @@ const App = () => {
           element={
             <PrivateRoute>
               <Checkout />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <UserProfile />
             </PrivateRoute>
           }
         />

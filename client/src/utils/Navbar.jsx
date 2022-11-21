@@ -25,7 +25,7 @@ export default function Navbar() {
     <Disclosure as="nav" className="bg-[#131921] fixed inset-x-0 z-10">
       {({ open }) => (
         <>
-          <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+          <div className="mx-auto px-2 sm:px-6 lg:px-8">
             <div className="relative flex items-center justify-between h-16">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
@@ -106,7 +106,7 @@ export default function Navbar() {
                 >
                   <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white focus:outline-none">
                     <NavLink
-                      to="/"
+                      to="/profile"
                       className={({ isActive }) =>
                         `${
                           isActive
@@ -115,7 +115,7 @@ export default function Navbar() {
                         }`
                       }
                     >
-                      Your Profile
+                      My Profile
                     </NavLink>
                     <NavLink
                       to="/test1"

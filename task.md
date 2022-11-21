@@ -30,4 +30,13 @@
 # Order product
 
 - Add to cart[*]
+
+* private route[*]
+
 - Check out process[]
+
+# User profile
+
+- User profile page[]
+
+* update user profile []
