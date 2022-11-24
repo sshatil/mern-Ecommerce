@@ -59,12 +59,12 @@ export default function Navbar() {
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     <NavLink
-                      to="/shop"
+                      to="/dashboard"
                       className={({ isActive }) =>
                         isActive ? isActiveStyle : isNotActiveStyle
                       }
                     >
-                      Shop
+                      Dashboard
                     </NavLink>
                   </div>
                 </div>
@@ -118,7 +118,7 @@ export default function Navbar() {
                       My Profile
                     </NavLink>
                     <NavLink
-                      to="/test1"
+                      to="/dashboard"
                       className={({ isActive }) =>
                         `${
                           isActive

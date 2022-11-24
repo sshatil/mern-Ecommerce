@@ -7,12 +7,25 @@ import Layout from "../utils/Layout";
 const UserProfile = () => {
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
+  const { name, email } = useSelector((state) => state.userProfile.user);
+  const { loading } = useSelector((state) => state.userProfile);
   useEffect(() => {
     dispatch(getUserProfile(token, toast));
   }, [dispatch, token]);
+  if (loading) {
+    return <p>loading....</p>;
+  }
   return (
     <Layout>
-      <div className="pt-20"></div>
+      <div className="pt-20">
+        <h1>User Name: {name}</h1>
+        <h1>Email: {email}</h1>
+        {/* User detail page route= useDetails */}
+        {/* TODO: For update profile using popup modal */}
+        <div className="">
+          <h1>Update Profile</h1>
+        </div>
+      </div>
     </Layout>
   );
 };

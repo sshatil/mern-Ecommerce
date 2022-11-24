@@ -40,3 +40,7 @@
 - User profile page[]
 
 * update user profile []
+
+# User dashboard
+
+- sidebar[]

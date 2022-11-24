@@ -10,6 +10,7 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import PrivateRoute from "./utils/PrivateRoute";
 import UserProfile from "./pages/UserProfile";
+import Dashboard from "./pages/dashboard/Dashboard";
 
 const App = () => {
   return (
@@ -39,7 +40,14 @@ const App = () => {
             </PrivateRoute>
           }
         />
-        {/* <Route path="/cart" element={<Cart />} /> */}
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
