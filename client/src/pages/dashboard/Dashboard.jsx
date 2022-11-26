@@ -10,13 +10,13 @@ const Dashboard = () => {
     setActiveLink(name);
   };
   return (
-    <div className="pt-20 flex gap-1">
+    <div className="flex gap-1">
       {/* Sidebar */}
-      <div className="w-2/12 border hidden md:inline-block">
+      <div className="md:w-2/12 w-14 sidebar-bg h-screen pt-20">
         <DashboardSidebar handleLink={handleLink} activeLink={activeLink} />
       </div>
       {/* Main Content */}
-      <div className="md:w-10/12 w-full border">
+      <div className="md:w-10/12 w-full border pt-20">
         {/* <DashboardContent /> */}
         {activeLink === "Home" && <DashboardHome />}
         {activeLink === "Profile" && <UserProfile />}

@@ -1,5 +1,4 @@
 import { HomeIcon, UserIcon } from "@heroicons/react/outline";
-import { useState } from "react";
 import SidebarLink from "./SidebarLink";
 
 const DashboardSidebar = ({ handleLink, activeLink }) => {

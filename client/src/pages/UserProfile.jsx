@@ -16,8 +16,8 @@ const UserProfile = () => {
     return <p>loading....</p>;
   }
   return (
-    <Layout>
-      <div className="pt-20">
+    <>
+      <div className="">
         <h1>User Name: {name}</h1>
         <h1>Email: {email}</h1>
         {/* User detail page route= useDetails */}
@@ -26,7 +26,7 @@ const UserProfile = () => {
           <h1>Update Profile</h1>
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 

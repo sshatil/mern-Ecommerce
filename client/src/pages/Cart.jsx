@@ -26,13 +26,10 @@ const Cart = () => {
   const handleRemove = (id) => {
     dispatch(removeProductFromCart(id));
   };
-  console.log(cartItems);
   const increase = (id, qty) => {
-    console.log("test");
     dispatch(increaseProductQuantity(id, qty));
   };
   const decrease = (id, qty) => {
-    console.log("test");
     dispatch(decreaseProductQuantity(id, qty));
   };
 
@@ -102,6 +99,7 @@ const Cart = () => {
                                   handleRemove={handleRemove}
                                   increase={increase}
                                   decrease={decrease}
+                                  key={product._id}
                                 />
                               </>
                             ))}

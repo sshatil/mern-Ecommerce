@@ -35,6 +35,8 @@
 
 - Check out process[]
 
+* Shipping address []
+
 # User profile
 
 - User profile page[]
