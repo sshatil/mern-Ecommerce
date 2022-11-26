@@ -1,24 +1,12 @@
-import { useState } from "react";
-
-const ShippingAddressForm = () => {
-  const [formData, setFormData] = useState({
-    address: "",
-    city: "",
-    postalCode: "",
-    country: "",
-  });
+const ShippingAddressForm = ({ formData, setFormData }) => {
   const handleFormData = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const handleShippingAddress = (e) => {
-    e.preventDefault();
-  };
-  console.log(formData);
   const { address, city, postalCode, country } = formData;
   return (
     <div>
-      <h1 className="text-xl font-bold my-3">Shipping Address</h1>
-      <form onSubmit={handleShippingAddress}>
+      <h1 className="text-xl font-bold my-3 mt-6">Shipping Address</h1>
+      <form>
         <div className="mb-2">
           <label
             htmlFor="address"
@@ -82,7 +70,6 @@ const ShippingAddressForm = () => {
             onChange={handleFormData}
             className="mt-1 p-2 block rounded-md shadow-sm border-2 border-gray-500 sm:text-sm w-full"
           />
-          <button type="submit"></button>
         </div>
       </form>
     </div>

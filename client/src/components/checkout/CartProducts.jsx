@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   decreaseProductQuantity,
   increaseProductQuantity,
@@ -7,7 +8,7 @@ import {
 } from "../../redux/actions/cartActions";
 import SingleCartItem from "../SingleCartItem";
 
-const CartProducts = () => {
+const CartProducts = ({}) => {
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
   const handleRemove = (id) => {
@@ -20,9 +21,10 @@ const CartProducts = () => {
     dispatch(decreaseProductQuantity(id, qty));
   };
   return (
-    <div className="mt-8">
+    <div className="mt-6">
+      <h1 className="text-xl font-bold my-3 border-b-2 pb-2">My Products</h1>
       <div className="flow-root">
-        <ul className="-my-6 divide-y divide-gray-200">
+        <ul className="divide-y divide-gray-200">
           {cartItems.map((product) => (
             <>
               <SingleCartItem

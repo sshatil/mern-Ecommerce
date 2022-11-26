@@ -14,6 +14,10 @@
   background-color: #33A0FF;
 }
 
+.btn-color:hover {
+  background-color: #1863a5;
+}
+
 .sidebar-bg {
   /* background-color: #131921;
   background-image: linear-gradient(178deg, #131921 0%, #412af5 100%); */
