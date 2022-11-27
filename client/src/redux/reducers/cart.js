@@ -15,39 +15,42 @@ export const cart = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case ADD_TO_CART:
-      const item = payload;
-      const sameItem = state.cartItems.find((i) => i._id === item._id);
+      // const item = payload;
+      const sameItem = state.cartItems.find(
+        (i) => i.product === payload.product
+      );
       if (sameItem) {
         return {
           ...state,
           cartItems: state.cartItems.map((i) =>
-            i._id === sameItem._id ? item : i
+            i.product === sameItem.product ? payload : i
           ),
         };
       } else {
         return {
           ...state,
-          cartItems: [...state.cartItems, { ...payload, qty: 1 }],
+          // cartItems: [...state.cartItems, { ...payload, qty: 1 }],
+          cartItems: [...state.cartItems, payload],
         };
       }
     case REMOVE_TO_CART:
       return {
         ...state,
-        cartItems: state.cartItems.filter((i) => i._id !== payload),
+        cartItems: state.cartItems.filter((i) => i.product !== payload),
       };
 
     case INCREASE_QUANTITY:
       return {
         ...state,
         cartItems: state.cartItems.map((i) =>
-          i._id === payload.id ? { ...i, qty: payload.qty + 1 } : i
+          i.product === payload.id ? { ...i, qty: payload.qty + 1 } : i
         ),
       };
     case DECREASE_QUANTITY:
       return {
         ...state,
         cartItems: state.cartItems.map((i) =>
-          i._id === payload.id ? { ...i, qty: payload.qty - 1 } : i
+          i.product === payload.id ? { ...i, qty: payload.qty - 1 } : i
         ),
       };
 

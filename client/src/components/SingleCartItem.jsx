@@ -32,7 +32,7 @@ const SingleCartItem = ({ product, handleRemove, increase, decrease }) => {
                   className="h-4 w-4 text-white"
                   onClick={() => {
                     if (product.qty > 1) {
-                      decrease(product._id, product.qty);
+                      decrease(product.product, product.qty);
                     }
                   }}
                 />
@@ -41,7 +41,7 @@ const SingleCartItem = ({ product, handleRemove, increase, decrease }) => {
               <button className="p-1 rounded-sm btn-color">
                 <PlusIcon
                   className="h-4 w-4 text-white"
-                  onClick={() => increase(product._id, product.qty)}
+                  onClick={() => increase(product.product, product.qty)}
                 />
               </button>
             </div>
@@ -49,7 +49,7 @@ const SingleCartItem = ({ product, handleRemove, increase, decrease }) => {
               <button
                 type="button"
                 className="font-medium text-indigo-600 hover:text-indigo-500"
-                onClick={() => handleRemove(product._id)}
+                onClick={() => handleRemove(product.product)}
               >
                 Remove
               </button>

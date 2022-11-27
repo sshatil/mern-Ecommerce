@@ -8,10 +8,19 @@ import {
 
 export const addToCart = (id) => async (dispatch, getState) => {
   try {
-    const res = await axios.get(`/api/products/${id}`);
+    const { data } = await axios.get(`/api/products/${id}`);
     dispatch({
       type: ADD_TO_CART,
-      payload: res.data,
+      // payload: data,
+      // send payload as required backend orderItems
+      payload: {
+        // _id: data._id,
+        product: data._id,
+        name: data.name,
+        image: data.image,
+        price: data.price,
+        qty: 1,
+      },
     });
 
     localStorage.setItem(

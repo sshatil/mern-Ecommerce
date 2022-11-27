@@ -1,12 +1,16 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CartProducts from "../components/checkout/CartProducts";
 import PaymentMethods from "../components/checkout/PaymentMethods";
 import ShippingAddressForm from "../components/checkout/ShippingAddressForm";
+import { createUserOrder } from "../redux/actions/createOrderActions";
 import Layout from "../utils/Layout";
+import toast from "react-hot-toast";
 
 const Checkout = () => {
+  const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
+  const { loading } = useSelector((state) => state.createOrder);
   // shipping address form data
   const [formData, setFormData] = useState({
     address: "",
@@ -24,6 +28,23 @@ const Checkout = () => {
   const taxPrice = Number((0.15 * subtotalPrice).toFixed(2));
   const shippingPrice = subtotalPrice > 50 ? 0 : 20;
   const totalPrice = subtotalPrice + taxPrice + shippingPrice;
+  // TODO:
+  const handleSubmit = () => {
+    dispatch(
+      createUserOrder(
+        {
+          orderItems: cartItems,
+          shippingAddress: formData,
+          paymentMethod: paymentMethod,
+          itemsPrice: subtotalPrice,
+          taxPrice: taxPrice,
+          shippingPrice: shippingPrice,
+          totalPrice: totalPrice,
+        },
+        toast
+      )
+    );
+  };
   return (
     <Layout>
       <div className="md:flex md:gap-10 pt-16">
@@ -56,6 +77,7 @@ const Checkout = () => {
             </div>
             <div className="mt-6">
               <p
+                onClick={handleSubmit}
                 className="flex items-center justify-center rounded-md
                           border border-transparent btn-color px-6 py-3
                           text-base font-medium text-white shadow-sm cursor-pointer"
