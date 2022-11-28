@@ -11,6 +11,7 @@ import Checkout from "./pages/Checkout";
 import PrivateRoute from "./utils/PrivateRoute";
 import UserProfile from "./pages/UserProfile";
 import Dashboard from "./pages/dashboard/Dashboard";
+import OrderDetails from "./components/checkout/OrderDetails";
 
 const App = () => {
   return (
@@ -29,6 +30,14 @@ const App = () => {
           element={
             <PrivateRoute>
               <Checkout />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/order/:id"
+          element={
+            <PrivateRoute>
+              <OrderDetails />
             </PrivateRoute>
           }
         />

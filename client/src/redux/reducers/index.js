@@ -3,7 +3,7 @@ import { product, topProducts, categoryList, singleProduct } from "./products";
 import { auth } from "./auth";
 import { cart, shoppingPage } from "./cart";
 import { userProfile } from "./userProfile";
-import { createOrder } from "./createOrder";
+import { createOrder, orderDetails } from "./order";
 
 export default combineReducers({
   product,
@@ -15,4 +15,5 @@ export default combineReducers({
   shoppingPage,
   userProfile,
   createOrder,
+  orderDetails,
 });

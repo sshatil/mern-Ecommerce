@@ -3,14 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import CartProducts from "../components/checkout/CartProducts";
 import PaymentMethods from "../components/checkout/PaymentMethods";
 import ShippingAddressForm from "../components/checkout/ShippingAddressForm";
-import { createUserOrder } from "../redux/actions/createOrderActions";
+import { createUserOrder } from "../redux/actions/orderActions";
 import Layout from "../utils/Layout";
 import toast from "react-hot-toast";
-
+import { useNavigate } from "react-router-dom";
 const Checkout = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { cartItems } = useSelector((state) => state.cart);
-  const { loading } = useSelector((state) => state.createOrder);
+  const { loading, order } = useSelector((state) => state.createOrder);
   // shipping address form data
   const [formData, setFormData] = useState({
     address: "",
@@ -45,6 +46,9 @@ const Checkout = () => {
       )
     );
   };
+  if (!loading) {
+    return navigate(`/order/${order._id}`);
+  }
   return (
     <Layout>
       <div className="md:flex md:gap-10 pt-16">
