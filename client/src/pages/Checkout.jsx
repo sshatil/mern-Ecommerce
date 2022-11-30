@@ -62,6 +62,7 @@ const Checkout = () => {
             paymentMethod={paymentMethod}
             setPaymentMethod={setPaymentMethod}
           />
+          {/* TODO: make a separate component & reuse order details page */}
           <div className="mt-7 rounded-md border-gray-200 py-6 my-3 px-6 border">
             <div className="flex justify-between py-1 text-base font-medium text-gray-900">
               <p>Subtotal</p>
