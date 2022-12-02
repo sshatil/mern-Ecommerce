@@ -6,13 +6,13 @@ import {
   LOGOUT_USER,
 } from "../types";
 
-const { token, isAdmin } = JSON.parse(localStorage.getItem("eshop-auth"));
+const data = JSON.parse(localStorage.getItem("eshop-auth"));
 
 const initialState = {
-  token: token ? token : null,
-  isAuthenticated: token ? true : false,
-  isAdmin: isAdmin ? isAdmin : false,
-  loading: token ? false : true,
+  token: data?.token ? data?.token : null,
+  isAuthenticated: data?.token ? true : false,
+  isAdmin: data?.isAdmin ? true : false,
+  loading: data?.token ? false : true,
 };
 
 export const auth = (state = initialState, action) => {

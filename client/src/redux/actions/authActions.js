@@ -46,4 +46,5 @@ export const logout = () => (dispatch) => {
   dispatch({
     type: LOGOUT_USER,
   });
+  localStorage.removeItem("eshop-auth");
 };

@@ -3,6 +3,7 @@ import {
   CREATE_USER_ORDER,
   ORDER_PAY_REQUEST,
   ORDER_PAY_SUCCESS,
+  RESET_CART,
   USER_ORDER_DETAILS,
 } from "../types";
 
@@ -18,6 +19,13 @@ export const createUserOrder = (data, toast) => async (dispatch, getState) => {
       type: CREATE_USER_ORDER,
       payload: res.data,
     });
+    dispatch({
+      type: RESET_CART,
+    });
+    localStorage.setItem(
+      "cartItems",
+      JSON.stringify(getState().cart.cartItems)
+    );
   } catch (error) {
     toast.error(error.response.data.message);
   }

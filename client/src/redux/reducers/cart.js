@@ -3,6 +3,7 @@ import {
   DECREASE_QUANTITY,
   INCREASE_QUANTITY,
   REMOVE_TO_CART,
+  RESET_CART,
 } from "../types";
 
 const allCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -37,6 +38,11 @@ export const cart = (state = initialState, action) => {
       return {
         ...state,
         cartItems: state.cartItems.filter((i) => i.product !== payload),
+      };
+    case RESET_CART:
+      return {
+        ...state,
+        cartItems: [],
       };
 
     case INCREASE_QUANTITY:
