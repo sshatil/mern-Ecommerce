@@ -29,7 +29,7 @@ const OrderProducts = () => {
         </div>
       </div>
       <div className="mt-5">
-        <h1 className="text-xl font-bold">Products</h1>
+        <h1 className="text-xl font-bold text-center md:text-left">Products</h1>
         <table className="w-full my-4">
           <tbody className="border">
             <tr className="border-b-2">
@@ -41,7 +41,7 @@ const OrderProducts = () => {
             {orderItems.map((item) => {
               return (
                 <>
-                  <tr className="w-9 text-center">
+                  <tr className="w-9 text-center" key={item._id}>
                     <td className="border-b-2 w-2/12 md:pl-4 sm:pl-4">
                       <img src={item.image} alt="" className="w-14 h-14" />
                     </td>

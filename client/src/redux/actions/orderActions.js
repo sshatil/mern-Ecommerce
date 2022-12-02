@@ -1,5 +1,10 @@
 import axios from "axios";
-import { CREATE_USER_ORDER, USER_ORDER_DETAILS } from "../types";
+import {
+  CREATE_USER_ORDER,
+  ORDER_PAY_REQUEST,
+  ORDER_PAY_SUCCESS,
+  USER_ORDER_DETAILS,
+} from "../types";
 
 export const createUserOrder = (data, toast) => async (dispatch, getState) => {
   const token = getState().auth.token;
@@ -33,3 +38,23 @@ export const userOrderDetails = (id, toast) => async (dispatch, getState) => {
     toast.error(error.response.data.message);
   }
 };
+export const userOrderPayment =
+  (orderId, paymentResult, toast) => async (dispatch, getState) => {
+    const token = getState().auth.token;
+    try {
+      dispatch({
+        type: ORDER_PAY_REQUEST,
+      });
+      const res = await axios.put(`/api/orders/${orderId}/pay`, paymentResult, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      dispatch({
+        type: ORDER_PAY_SUCCESS,
+        payload: res.data,
+      });
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };

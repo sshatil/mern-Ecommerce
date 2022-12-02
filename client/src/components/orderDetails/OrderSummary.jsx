@@ -10,7 +10,7 @@ const OrderSummary = () => {
     0
   );
   return (
-    <div className="md:w-4/12 mt-4">
+    <div className="mt-4">
       <div className="rounded-md border-gray-200 py-6 my-3 px-6 border">
         <h1 className="text-center text-lg font-bold mb-4 border-b-2">
           Order Summary

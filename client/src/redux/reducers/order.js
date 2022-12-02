@@ -1,4 +1,10 @@
-import { CREATE_USER_ORDER, USER_ORDER_DETAILS } from "../types";
+import {
+  CREATE_USER_ORDER,
+  ORDER_PAY_REQUEST,
+  ORDER_PAY_RESET,
+  ORDER_PAY_SUCCESS,
+  USER_ORDER_DETAILS,
+} from "../types";
 
 export const createOrder = (state = { order: {}, loading: true }, action) => {
   const { type, payload } = action;
@@ -26,6 +32,25 @@ export const orderDetails = (
         orderItem: payload,
         loading: false,
       };
+    default:
+      return state;
+  }
+};
+// order pay
+export const orderPay = (state = {}, action) => {
+  const { type } = action;
+  switch (type) {
+    case ORDER_PAY_REQUEST:
+      return {
+        loading: true,
+      };
+    case ORDER_PAY_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+      };
+    case ORDER_PAY_RESET:
+      return {};
     default:
       return state;
   }
