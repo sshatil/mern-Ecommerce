@@ -33,9 +33,9 @@
 
 * private route[*]
 
-- Check out process[]
+- Check out process[*]
 
-* Shipping address []
+* Shipping address [*]
 
 # User profile
 
@@ -46,3 +46,5 @@
 # User dashboard
 
 - sidebar[]
+
+* render user order list []

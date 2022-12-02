@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategoryList, getProducts } from "../redux/actions/proudctActions";
 import { RatingStar } from "rating-star";
+import SidebarLoading from "../utils/loading/SidebarLoading";
 
 const SideBar = ({ showSidebar, setShowSidebar }) => {
   const dispatch = useDispatch();
@@ -35,6 +36,9 @@ const SideBar = ({ showSidebar, setShowSidebar }) => {
   //   setPrice(e.target.value);
   //   // setMin(price([0]));
   // };
+  if (loading) {
+    return <SidebarLoading showSidebar={showSidebar} />;
+  }
   return (
     <>
       <div

@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTopProducts } from "../redux/actions/proudctActions";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 import { Link } from "react-router-dom";
+import loadingImage from "../assets/loadingGif/homepage-loading.gif";
+import ball from "../assets/loadingGif/Ball.gif";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -69,7 +71,9 @@ const Header = () => {
   return (
     <div className="pt-14">
       {loading ? (
-        <h1 className="h-full">Loading...</h1>
+        <div className="bg-white bg-opacity-20 transition-opacity flex justify-center items-center">
+          <img src={ball} alt="" />
+        </div>
       ) : (
         <AliceCarousel
           mouseTracking

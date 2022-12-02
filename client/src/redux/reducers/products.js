@@ -7,6 +7,7 @@ import {
 
 const initialState = {
   products: [],
+  loading: true,
 };
 
 export const product = (state = initialState, action) => {
@@ -16,6 +17,7 @@ export const product = (state = initialState, action) => {
       return {
         ...state,
         products: payload,
+        loading: false,
       };
     default:
       return state;

@@ -1,7 +1,13 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import ProductLoading from "../utils/loading/ProductLoading";
 
 const SingleProduct = ({ product }) => {
+  const { loading } = useSelector((state) => state.product);
+  if (loading) {
+    return <ProductLoading />;
+  }
   return (
     // <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
     <Link to={`/details/${product._id}`}>
