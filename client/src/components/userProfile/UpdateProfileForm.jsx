@@ -3,7 +3,6 @@ const UpdateProfileForm = ({ formData, setFormData, handleUpdateProfile }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const { name, email, password } = formData;
-  console.log(name, email);
   return (
     <div>
       {/* <h1 className="text-xl font-bold my-3 mt-6">Update User Information</h1> */}

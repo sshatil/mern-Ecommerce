@@ -17,7 +17,7 @@ const Dashboard = () => {
         <DashboardSidebar handleLink={handleLink} activeLink={activeLink} />
       </div>
       {/* Main Content */}
-      <div className="md:w-10/12 w-full pt-20 h-screen overflow-y-scroll">
+      <div className="md:w-10/12 w-full pt-20 h-screen overflow-y-scroll md:px-5 px-1 mt-5">
         {/* <DashboardContent /> */}
         {activeLink === "Home" && <DashboardHome />}
         {activeLink === "Profile" && <UserProfile />}

@@ -29,7 +29,7 @@ const UserProfile = () => {
   }
   return (
     <>
-      <div className="md:px-7 px-3 mt-3">
+      <div className="">
         <h1 className="text-2xl font-bold ">My Details</h1>
         <h3 className="text-lg font-bold border-b-2 my-4">
           Personal Information
