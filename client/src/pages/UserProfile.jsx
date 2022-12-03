@@ -1,29 +1,45 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserProfile } from "../redux/actions/userProfileActions";
-import Layout from "../utils/Layout";
+import UpdateProfileForm from "../components/userProfile/UpdateProfileForm";
+import {
+  getUserProfile,
+  updateUserProfile,
+} from "../redux/actions/userProfileActions";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
-  const { token } = useSelector((state) => state.auth);
-  const { name, email } = useSelector((state) => state.userProfile.user);
-  const { loading } = useSelector((state) => state.userProfile);
+  const { user, loading } = useSelector((state) => state.userProfile);
+  const [formData, setFormData] = useState({
+    name: user?.name,
+    email: user?.email,
+    password: "",
+  });
   useEffect(() => {
-    dispatch(getUserProfile(token, toast));
-  }, [dispatch, token]);
+    dispatch(getUserProfile(toast));
+  }, [dispatch, loading]);
+  // update user
+  const handleUpdateProfile = (e) => {
+    e.preventDefault();
+    dispatch(updateUserProfile(formData, toast));
+  };
+
   if (loading) {
     return <p>loading....</p>;
   }
   return (
     <>
-      <div className="">
-        <h1>User Name: {name}</h1>
-        <h1>Email: {email}</h1>
-        {/* User detail page route= useDetails */}
-        {/* TODO: For update profile using popup modal */}
-        <div className="">
-          <h1>Update Profile</h1>
+      <div className="md:px-7 px-3 mt-3">
+        <h1 className="text-2xl font-bold ">My Details</h1>
+        <h3 className="text-lg font-bold border-b-2 my-4">
+          Personal Information
+        </h3>
+        <div className="max-w-2xl mx-auto mt-10">
+          <UpdateProfileForm
+            formData={formData}
+            setFormData={setFormData}
+            handleUpdateProfile={handleUpdateProfile}
+          />
         </div>
       </div>
     </>
