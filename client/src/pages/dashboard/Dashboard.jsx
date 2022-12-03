@@ -2,6 +2,7 @@ import { useState } from "react";
 import DashboardContent from "../../components/dashboard/DashboardContent";
 import DashboardHome from "../../components/dashboard/DashboardHome";
 import DashboardSidebar from "../../components/dashboard/DashboardSidebar";
+import DashboardUserOrders from "../../components/dashboard/DashboardUserOrders";
 import UserProfile from "../UserProfile";
 
 const Dashboard = () => {
@@ -16,10 +17,11 @@ const Dashboard = () => {
         <DashboardSidebar handleLink={handleLink} activeLink={activeLink} />
       </div>
       {/* Main Content */}
-      <div className="md:w-10/12 w-full pt-20">
+      <div className="md:w-10/12 w-full pt-20 h-screen overflow-y-scroll">
         {/* <DashboardContent /> */}
         {activeLink === "Home" && <DashboardHome />}
         {activeLink === "Profile" && <UserProfile />}
+        {activeLink === "Order" && <DashboardUserOrders />}
       </div>
     </div>
   );

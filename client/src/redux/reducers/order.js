@@ -1,5 +1,6 @@
 import {
   CREATE_USER_ORDER,
+  GET_USER_ORDER_LIST,
   ORDER_PAY_REQUEST,
   ORDER_PAY_RESET,
   ORDER_PAY_SUCCESS,
@@ -51,6 +52,20 @@ export const orderPay = (state = {}, action) => {
       };
     case ORDER_PAY_RESET:
       return {};
+    default:
+      return state;
+  }
+};
+
+export const userOrderList = (state = { orderList: [] }, action) => {
+  const { type, payload } = action;
+  switch (type) {
+    case GET_USER_ORDER_LIST:
+      return {
+        ...state,
+        orderList: payload,
+        loading: false,
+      };
     default:
       return state;
   }

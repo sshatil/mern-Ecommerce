@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   CREATE_USER_ORDER,
+  GET_USER_ORDER_LIST,
   ORDER_PAY_REQUEST,
   ORDER_PAY_SUCCESS,
   RESET_CART,
@@ -66,3 +67,20 @@ export const userOrderPayment =
       toast.error(error.response.data.message);
     }
   };
+
+export const getUserOrderList = (toast) => async (dispatch, getState) => {
+  const token = getState().auth.token;
+  try {
+    const res = await axios.get(`/api/orders/myorders`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    dispatch({
+      type: GET_USER_ORDER_LIST,
+      payload: res.data,
+    });
+  } catch (error) {
+    toast.error(error.response.data.message);
+  }
+};

@@ -1,4 +1,4 @@
-import { HomeIcon, UserIcon } from "@heroicons/react/outline";
+import { HomeIcon, UserIcon, ArchiveIcon } from "@heroicons/react/outline";
 import SidebarLink from "./SidebarLink";
 
 const DashboardSidebar = ({ handleLink, activeLink }) => {
@@ -13,6 +13,12 @@ const DashboardSidebar = ({ handleLink, activeLink }) => {
       <SidebarLink
         Icon={UserIcon}
         name="Profile"
+        activeLink={activeLink}
+        handleLink={handleLink}
+      />
+      <SidebarLink
+        Icon={ArchiveIcon}
+        name="Order"
         activeLink={activeLink}
         handleLink={handleLink}
       />

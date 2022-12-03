@@ -39,9 +39,9 @@
 
 # User profile
 
-- User profile page[]
+- User profile page[*]
 
-* update user profile []
+* update user profile [*]
 
 # User dashboard
 
