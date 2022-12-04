@@ -7,6 +7,7 @@ import { getSingleProduct } from "../redux/actions/proudctActions";
 import Layout from "../utils/Layout";
 import SingleProduct from "../components/SingleProduct";
 import { addToCart, handleOpenCartPage } from "../redux/actions/cartActions";
+import Loading from "../utils/loading/Loading";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -39,7 +40,9 @@ const ProductDetails = () => {
     <Layout>
       <div className="pt-20">
         {loading ? (
-          <p>loading......</p>
+          <div>
+            <Loading />
+          </div>
         ) : (
           <div className="bg-white">
             <div className="mb-4">
@@ -95,7 +98,7 @@ const ProductDetails = () => {
 
                     <button
                       type="button"
-                      className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 hover:bg-indigo-700 py-3 px-8 text-base font-medium text-white "
+                      className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent btn-color py-3 px-8 text-base font-medium text-white "
                       onClick={() => handleAddToCard(_id)}
                     >
                       Add to bag

@@ -6,6 +6,7 @@ import {
   getUserProfile,
   updateUserProfile,
 } from "../redux/actions/userProfileActions";
+import BallLoading from "../assets/loadingGif/Ball.gif";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,11 @@ const UserProfile = () => {
   };
 
   if (loading) {
-    return <p>loading....</p>;
+    return (
+      <div className="flex justify-center">
+        <img src={BallLoading} alt="" />
+      </div>
+    );
   }
   return (
     <>

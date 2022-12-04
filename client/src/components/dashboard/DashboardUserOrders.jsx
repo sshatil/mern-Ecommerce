@@ -4,17 +4,25 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserOrderList } from "../../redux/actions/orderActions";
+import BallLoading from "../../assets/loadingGif/Ball.gif";
 
 const DashboardUserOrders = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { orderList } = useSelector((state) => state.userOrderList);
+  const { orderList, loading } = useSelector((state) => state.userOrderList);
   useEffect(() => {
     dispatch(getUserOrderList(toast));
   }, [dispatch]);
   const handleOrderDetails = (id) => {
     navigate(`/order/${id}`);
   };
+  if (loading) {
+    return (
+      <div className="flex justify-center">
+        <img src={BallLoading} alt="" />
+      </div>
+    );
+  }
   return (
     <div>
       <div className="">

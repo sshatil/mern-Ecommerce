@@ -63,6 +63,7 @@ export const userOrderPayment =
         type: ORDER_PAY_SUCCESS,
         payload: res.data,
       });
+      toast.success("Payment successful");
     } catch (error) {
       toast.error(error.response.data.message);
     }

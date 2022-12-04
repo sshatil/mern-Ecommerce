@@ -9,11 +9,10 @@ import {
   userOrderPayment,
 } from "../redux/actions/orderActions";
 import Layout from "../utils/Layout";
-import { PayPalButton } from "react-paypal-button-v2";
-import axios from "axios";
-import { ORDER_PAY_RESET } from "../redux/types";
 import toast from "react-hot-toast";
 import { CheckCircleIcon } from "@heroicons/react/outline";
+import CircleSpinner from "../assets/loadingGif/cricleSpinner.gif";
+import Loading from "../utils/loading/Loading";
 
 const OrderDetails = () => {
   const dispatch = useDispatch();
@@ -73,7 +72,7 @@ const OrderDetails = () => {
     dispatch(userOrderPayment(id, paymentResult, toast));
   };
   if (loading) {
-    return <p>Loading........</p>;
+    return <Loading />;
   }
 
   return (
@@ -86,12 +85,18 @@ const OrderDetails = () => {
         <div className="md:w-4/12">
           <OrderSummary />
           {/* <PayPalButton /> */}
-          {!successPay ? (
+          {!successPay && !orderItem.isPaid ? (
             <button
               onClick={handlePayment}
               className="bg-[#FFC439] w-full p-2 rounded font-bold"
             >
-              {!loadingPay ? <p>PayPal</p> : <p>Loading</p>}
+              {!loadingPay ? (
+                <p>PayPal</p>
+              ) : (
+                <p className="flex justify-center">
+                  <img src={CircleSpinner} alt="" className="w-6 h-6" />
+                </p>
+              )}
             </button>
           ) : (
             <div className="bg-green-600 w-full p-2 rounded font-bold text-center flex justify-center">
