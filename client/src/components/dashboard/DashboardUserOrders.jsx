@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserOrderList } from "../../redux/actions/orderActions";
-import BallLoading from "../../assets/loadingGif/Ball.gif";
+import Loading from "../../utils/loading/Loading";
 
 const DashboardUserOrders = () => {
   const dispatch = useDispatch();
@@ -17,11 +17,7 @@ const DashboardUserOrders = () => {
     navigate(`/order/${id}`);
   };
   if (loading) {
-    return (
-      <div className="flex justify-center">
-        <img src={BallLoading} alt="" />
-      </div>
-    );
+    return <Loading />;
   }
   return (
     <div>

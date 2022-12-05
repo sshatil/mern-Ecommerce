@@ -42,14 +42,6 @@ const App = () => {
           }
         />
         <Route
-          path="/profile"
-          element={
-            <PrivateRoute>
-              <UserProfile />
-            </PrivateRoute>
-          }
-        />
-        <Route
           path="/dashboard"
           element={
             <PrivateRoute>
