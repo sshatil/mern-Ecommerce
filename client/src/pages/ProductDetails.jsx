@@ -8,6 +8,8 @@ import Layout from "../utils/Layout";
 import SingleProduct from "../components/SingleProduct";
 import { addToCart, handleOpenCartPage } from "../redux/actions/cartActions";
 import Loading from "../utils/loading/Loading";
+import ProductReviews from "../components/productDetails/ProductReviews";
+import ProductReviewForm from "../components/productDetails/ProductReviewForm";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -15,11 +17,21 @@ function classNames(...classes) {
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
-  const { _id, category, image, name, price, rating, description, numReviews } =
-    useSelector((state) => state.singleProduct.product);
+  const {
+    _id,
+    category,
+    image,
+    name,
+    price,
+    rating,
+    description,
+    numReviews,
+    reviews,
+  } = useSelector((state) => state.singleProduct.product);
   const { loading, product } = useSelector((state) => state.singleProduct);
   // all product
   const { products } = useSelector((state) => state.product);
+  const { isAuthenticated } = useSelector((state) => state.auth);
 
   const { id } = useParams();
   useEffect(() => {
@@ -61,31 +73,26 @@ const ProductDetails = () => {
                   <p className="text-3xl tracking-tight text-gray-900">
                     {price}
                   </p>
-                  {/* <div className="mt-6">
+
+                  <div className="mt-6">
                     <h3 className="sr-only">Reviews</h3>
                     <div className="flex items-center">
                       <div className="flex items-center">
-                        {[0, 1, 2, 3, 4].map((rating) => (
+                        {[0, 1, 2, 3, 4].map((r) => (
                           <StarIcon
-                            key={rating}
+                            key={r}
                             className={classNames(
-                              reviews.average > rating
-                                ? "text-gray-900"
-                                : "text-gray-200",
+                              rating > r ? "text-gray-900" : "text-gray-200",
                               "h-5 w-5 flex-shrink-0"
                             )}
                             aria-hidden="true"
                           />
                         ))}
                       </div>
-                      <a
-                        href={reviews.href}
-                        className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500"
-                      >
-                        {numReviews} reviews
-                      </a>
+                      <p className="ml-4 font-semibold">{numReviews} reviews</p>
                     </div>
-                  </div> */}
+                  </div>
+
                   <div className="mt-10">
                     {/* description */}
                     <div>
@@ -112,6 +119,11 @@ const ProductDetails = () => {
             {/* <div className="">
               <SingleProduct product={product} />
             </div> */}
+            {/* TODO: Add review & rating */}
+            <div className="pb-20 mt-14">
+              <ProductReviews />
+              {isAuthenticated && <ProductReviewForm />}
+            </div>
           </div>
         )}
       </div>

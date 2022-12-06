@@ -19,6 +19,8 @@
 - product details page[]
 - show similar product list in product details page[]
 
+* product review []
+
 # Auth
 
 - register[*]
@@ -45,6 +47,6 @@
 
 # User dashboard
 
-- sidebar[]
+- sidebar[*]
 
 * render user order list [*]
