@@ -2,9 +2,12 @@ import { RatingStar } from "rating-star";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { reviewProduct } from "../../redux/actions/proudctActions";
 import { getUserProfile } from "../../redux/actions/userProfileActions";
 
 const ProductReviewForm = () => {
+  const { id } = useParams();
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const dispatch = useDispatch();
@@ -18,6 +21,7 @@ const ProductReviewForm = () => {
   }, [dispatch, loading, isAuthenticated]);
   const handleSubmitComment = (e) => {
     e.preventDefault();
+    dispatch(reviewProduct(id, user.name, rating, comment, toast));
     console.log(user.name, rating, comment);
   };
   return (
@@ -43,7 +47,7 @@ const ProductReviewForm = () => {
             id=""
             cols=""
             rows="3"
-            className="border-2 w-[50%]"
+            className="border-2 lg:w-[50%] w-full"
             onChange={(e) => setComment(e.target.value)}
           ></textarea>
         </div>

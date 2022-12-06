@@ -1,4 +1,6 @@
 import {
+  CREATE_REVIEW,
+  CREATE_REVIEW_REQUEST,
   GET_CATEGORIES,
   GET_PRODUCTS,
   GET_SINGLE_PRODUCT,
@@ -37,6 +39,12 @@ export const singleProduct = (
         ...state,
         loading: false,
         product: payload,
+        // reviewLoading: true,
+      };
+    case CREATE_REVIEW:
+      return {
+        ...state,
+        loading: true,
       };
     default:
       return state;

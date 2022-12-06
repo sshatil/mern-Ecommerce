@@ -28,7 +28,9 @@ const ProductDetails = () => {
     numReviews,
     reviews,
   } = useSelector((state) => state.singleProduct.product);
-  const { loading, product } = useSelector((state) => state.singleProduct);
+  const { loading, product, reviewLoading } = useSelector(
+    (state) => state.singleProduct
+  );
   // all product
   const { products } = useSelector((state) => state.product);
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -36,7 +38,7 @@ const ProductDetails = () => {
   const { id } = useParams();
   useEffect(() => {
     dispatch(getSingleProduct(id));
-  }, [dispatch, id]);
+  }, [dispatch, id, loading]);
   // console.log(product);
   //TODO: show similar product
   // useEffect(() => {

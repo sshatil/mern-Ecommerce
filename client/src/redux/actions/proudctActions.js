@@ -1,5 +1,7 @@
 import axios from "axios";
 import {
+  CREATE_REVIEW,
+  CREATE_REVIEW_REQUEST,
   GET_CATEGORIES,
   GET_PRODUCTS,
   GET_SINGLE_PRODUCT,
@@ -64,3 +66,26 @@ export const getCategoryList = () => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const reviewProduct =
+  (id, name, rating, comment, toast) => async (dispatch, getState) => {
+    console.log(name, rating, comment);
+    const data = { name, rating, comment };
+    const token = getState().auth.token;
+    try {
+      // dispatch({
+      //   type: CREATE_REVIEW_REQUEST,
+      // });
+      await axios.post(`/api/products/${id}/reviews`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      dispatch({
+        type: CREATE_REVIEW,
+        // payload: res.data,
+      });
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };
