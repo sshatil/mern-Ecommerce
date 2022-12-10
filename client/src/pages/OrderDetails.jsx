@@ -85,7 +85,8 @@ const OrderDetails = () => {
         <div className="md:w-4/12">
           <OrderSummary />
           {/* <PayPalButton /> */}
-          {!successPay && !orderItem.isPaid ? (
+          {/* {!successPay && !orderItem.isPaid ? ( */}
+          {!orderItem.isPaid ? (
             <button
               onClick={handlePayment}
               className="bg-[#FFC439] w-full p-2 rounded font-bold"

@@ -25,7 +25,7 @@ const SingleProduct = ({ product }) => {
             ${product.price}
           </p>
           <p className="mt-1 text-lg font-medium text-gray-900">
-            {product.rating}
+            {product.rating.toFixed(1)}
           </p>
         </div>
       </div>

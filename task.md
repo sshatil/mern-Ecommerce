@@ -16,10 +16,10 @@
 # Product list
 
 - design product list[x]
-- product details page[]
+- product details page[*]
 - show similar product list in product details page[]
 
-* product review []
+* product review [*]
 
 # Auth
 
