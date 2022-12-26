@@ -15,7 +15,7 @@ const isActiveStyle =
 
 export default function Navbar() {
   const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { isAuthenticated, isAdmin } = useSelector((state) => state.auth);
   const { cartItems } = useSelector((state) => state.cart);
   const navigate = useNavigate();
   const setOpen = () => {
@@ -69,6 +69,21 @@ export default function Navbar() {
                     </NavLink>
                   </div>
                 </div>
+                {/* admin panel */}
+                {isAdmin && (
+                  <div className="hidden sm:block sm:ml-6">
+                    <div className="flex space-x-4">
+                      <NavLink
+                        to="/admin/dashboard"
+                        className={({ isActive }) =>
+                          isActive ? isActiveStyle : isNotActiveStyle
+                        }
+                      >
+                        Admin Panel
+                      </NavLink>
+                    </div>
+                  </div>
+                )}
               </div>
 
               <div
@@ -130,6 +145,21 @@ export default function Navbar() {
                     >
                       Dashboard
                     </NavLink>
+                    {/* admin panel */}
+                    {isAdmin && (
+                      <NavLink
+                        to="/admin/dashboard"
+                        className={({ isActive }) =>
+                          `${
+                            isActive
+                              ? "text-gray-500 block px-4 py-2 text-sm"
+                              : "block px-4 py-2 text-sm text-gray-700 hover:bg-slate-400"
+                          }`
+                        }
+                      >
+                        Admin Panel
+                      </NavLink>
+                    )}
                     {!isAuthenticated ? (
                       <NavLink
                         to="/login"

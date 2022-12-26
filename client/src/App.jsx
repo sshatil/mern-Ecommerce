@@ -9,9 +9,9 @@ import GoToTop from "./utils/GoToTop";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import PrivateRoute from "./utils/PrivateRoute";
-import UserProfile from "./pages/UserProfile";
 import Dashboard from "./pages/dashboard/Dashboard";
 import OrderDetails from "./pages/OrderDetails";
+import AdminDashboard from "./pages/adminPanel/AdminDashboard";
 
 const App = () => {
   return (
@@ -46,6 +46,14 @@ const App = () => {
           element={
             <PrivateRoute>
               <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/dashboard"
+          element={
+            <PrivateRoute>
+              <AdminDashboard />
             </PrivateRoute>
           }
         />
