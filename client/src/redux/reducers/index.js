@@ -1,5 +1,11 @@
 import { combineReducers } from "redux";
-import { product, topProducts, categoryList, singleProduct } from "./products";
+import {
+  product,
+  topProducts,
+  categoryList,
+  singleProduct,
+  createProduct,
+} from "./products";
 import { auth } from "./auth";
 import { cart, shoppingPage } from "./cart";
 import { userProfile } from "./userProfile";
@@ -18,4 +24,5 @@ export default combineReducers({
   orderDetails,
   orderPay,
   userOrderList,
+  createProduct,
 });

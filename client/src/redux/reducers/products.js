@@ -1,10 +1,12 @@
 import {
+  CREATE_PRODUCT,
   CREATE_REVIEW,
   CREATE_REVIEW_REQUEST,
   GET_CATEGORIES,
   GET_PRODUCTS,
   GET_SINGLE_PRODUCT,
   GET_TOP_PRODUCTS,
+  UPLOAD_PRODUCT_IMAGE,
 } from "../types";
 
 const initialState = {
@@ -79,6 +81,28 @@ export const categoryList = (state = { category: [] }, action) => {
         ...state,
         category: payload,
       };
+    default:
+      return state;
+  }
+};
+
+// admin panel create product
+export const createProduct = (state = { path: "", loading: true }, action) => {
+  const { type, payload } = action;
+  switch (type) {
+    case UPLOAD_PRODUCT_IMAGE:
+      return {
+        ...state,
+        loading: false,
+        path: payload,
+      };
+    case CREATE_PRODUCT:
+      return {
+        ...state,
+        loading: false,
+        path: "",
+      };
+
     default:
       return state;
   }

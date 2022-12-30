@@ -1,12 +1,13 @@
 import axios from "axios";
 import {
+  CREATE_PRODUCT,
   CREATE_REVIEW,
-  CREATE_REVIEW_REQUEST,
   GET_CATEGORIES,
   GET_PRODUCTS,
   GET_SINGLE_PRODUCT,
   GET_TOP_PRODUCTS,
   GET_TOP_PRODUCTS_FAILED,
+  UPLOAD_PRODUCT_IMAGE,
 } from "../types";
 
 export const getProducts =
@@ -89,3 +90,40 @@ export const reviewProduct =
       toast.error(error.response.data.message);
     }
   };
+
+// admin panel
+export const uploadProductImage = (formData) => async (dispatch, getState) => {
+  const token = getState().auth.token;
+  try {
+    // await axios.post("/api/products", formData, {
+    const { data } = await axios.post("/api/upload", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    dispatch({
+      type: UPLOAD_PRODUCT_IMAGE,
+      payload: data,
+    });
+  } catch (error) {
+    // toast.error(error.response.data.message);
+  }
+};
+export const createProduct = (formData) => async (dispatch, getState) => {
+  const token = getState().auth.token;
+  try {
+    const { data } = await axios.post("/api/products", formData, {
+      // const { data } = await axios.post("/api/upload", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    dispatch({
+      type: CREATE_PRODUCT,
+    });
+  } catch (error) {
+    // toast.error(error.response.data.message);
+  }
+};
