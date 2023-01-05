@@ -9,15 +9,13 @@ const SingleProduct = ({ product }) => {
     return <ProductLoading />;
   }
   return (
-    // <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
     <Link to={`/details/${product._id}`}>
       <div className="group cursor-pointer">
-        {/* <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8"> */}
-        <div className="w-50 h-72 bg-gray-200 rounded-lg overflow-hidden xl:w-50 xl:h-72 border-2">
+        <div className="lg:w-[275px] lg:h-[285px] md:w-60 md:h-60  sm:w-60 sm:h-64 bg-gray-200 rounded-lg overflow-hidden">
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-full object-center object-cover group-hover:opacity-75"
+            className="w-full h-full object-center group-hover:opacity-75"
           />
         </div>
         <h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>

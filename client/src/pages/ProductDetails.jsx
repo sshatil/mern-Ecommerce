@@ -61,9 +61,8 @@ const ProductDetails = () => {
           <div className="bg-white">
             <div className="mb-4">
               {/* Image gallery */}
-              <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+              <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-5xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
                 <div className="overflow-hidden rounded-lg">
-                  {/* <div className="aspect-w-3 aspect-h-3 overflow-hidden rounded-lg"> */}
                   <img
                     src={image}
                     alt={name}
@@ -123,7 +122,7 @@ const ProductDetails = () => {
               <SingleProduct product={product} />
             </div> */}
             {/* TODO: Add review & rating */}
-            <div className="pb-20 mt-14">
+            <div className="pb-20 mt-20 lg:mt-1">
               <ProductReviews />
               {!isAuthenticated && (
                 <div className="">
