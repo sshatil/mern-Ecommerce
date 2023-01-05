@@ -1,5 +1,4 @@
 import { CameraIcon, XIcon } from "@heroicons/react/outline";
-import { useEffect } from "react";
 import { useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
@@ -68,8 +67,6 @@ const UploadProduct = () => {
       );
     }
   };
-  // console.log(productFormData);
-  console.log(path);
   return (
     <div className="max-w-xl mx-auto mb-5">
       {/* upload image */}

@@ -5,8 +5,8 @@ import Product from "../models/productModel.js";
 // @route   GET /api/products
 // @access  Public
 const getProducts = asyncHandler(async (req, res) => {
-  const pageSize = 8;
-  const page = Number(req.query.pageNumber) || 1;
+  // const pageSize = 8;
+  // const page = Number(req.query.pageNumber) || 1;
   const name = req.query.name || "";
   const category = req.query.category || "";
   // const seller = req.query.seller || "";
@@ -48,10 +48,11 @@ const getProducts = asyncHandler(async (req, res) => {
     ...ratingFilter,
   })
     // .populate("seller", "seller.name seller.logo")
-    .sort(sortOrder)
-    .skip(pageSize * (page - 1))
-    .limit(pageSize);
-  res.status(200).json({ products, page, pages: Math.ceil(count / pageSize) });
+    .sort(sortOrder);
+  // .skip(pageSize * (page - 1))
+  // .limit(pageSize);
+  res.status(200).json({ products });
+  // res.status(200).json({ products, page, pages: Math.ceil(count / pageSize) });
 });
 
 // Todo get products filter by brand
