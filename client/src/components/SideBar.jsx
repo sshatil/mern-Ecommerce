@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategoryList, getProducts } from "../redux/actions/proudctActions";
-import { RatingStar } from "rating-star";
 import SidebarLoading from "../utils/loading/SidebarLoading";
+import RatingStar from "../utils/RatingStar";
 
 const SideBar = ({ showSidebar, setShowSidebar }) => {
   const dispatch = useDispatch();
   // const [price, setPrice] = useState([]);
   const [name, setName] = useState("");
   const [categoryName, setCategoryName] = useState("");
-  const [min, setMin] = useState("");
+  const [min, setMin] = useState(1);
   const [max, setMax] = useState("");
   const [rating, setRating] = useState("");
   const [loading, setLoading] = useState(true);
@@ -39,6 +39,7 @@ const SideBar = ({ showSidebar, setShowSidebar }) => {
   if (loading) {
     return <SidebarLoading showSidebar={showSidebar} />;
   }
+  console.log(rating);
   return (
     <>
       <div
@@ -84,18 +85,16 @@ const SideBar = ({ showSidebar, setShowSidebar }) => {
           <label for="vehicle1">30 - 50</label>
         </div> */}
         {/* rating */}
+        {/* <input type="range" name="" id="" /> */}
         <div className="p-3 rounded-sm bg-[#F6F7F8]">
           <h3 className="text-lg font-semibold">Rating</h3>
-          <div className="-ml-2">
-            <RatingStar
-              id="custom-icon-wow"
-              rating={rating}
-              // starIcon={AcUnitIcon}
-              colors={{ mask: "#FFC600" }}
-              noBorder
-              clickable={true}
-              onRatingChange={(rating) => setRating(rating)}
-            />
+          <div className="mt-2">
+            <RatingStar value={0} setRating={setRating} />
+            <RatingStar value={1} setRating={setRating} />
+            <RatingStar value={2} setRating={setRating} />
+            <RatingStar value={3} setRating={setRating} />
+            <RatingStar value={4} setRating={setRating} />
+            <RatingStar value={5} setRating={setRating} />
           </div>
         </div>
       </div>
