@@ -122,18 +122,6 @@ export default function Navbar() {
                 >
                   <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white focus:outline-none">
                     <NavLink
-                      to="/profile"
-                      className={({ isActive }) =>
-                        `${
-                          isActive
-                            ? "text-gray-500 block px-4 py-2 text-sm"
-                            : "block px-4 py-2 text-sm text-gray-700 hover:bg-slate-400"
-                        }`
-                      }
-                    >
-                      My Profile
-                    </NavLink>
-                    <NavLink
                       to="/dashboard"
                       className={({ isActive }) =>
                         `${

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { StarIcon } from "@heroicons/react/solid";
 import { RadioGroup } from "@headlessui/react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleProduct } from "../redux/actions/proudctActions";
 import Layout from "../utils/Layout";
@@ -124,6 +124,14 @@ const ProductDetails = () => {
             {/* TODO: Add review & rating */}
             <div className="pb-20 mt-14">
               <ProductReviews />
+              {!isAuthenticated && (
+                <div className="">
+                  <h1 className="text-lg font-bold">Your Review</h1>
+                  <Link to="/login" className="text-blue-500">
+                    <p className="text-lg">You should be Login first</p>
+                  </Link>
+                </div>
+              )}
               {isAuthenticated && <ProductReviewForm />}
             </div>
           </div>

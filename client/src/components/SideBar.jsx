@@ -39,7 +39,6 @@ const SideBar = ({ showSidebar, setShowSidebar }) => {
   if (loading) {
     return <SidebarLoading showSidebar={showSidebar} />;
   }
-  console.log(rating);
   return (
     <>
       <div
