@@ -13,6 +13,7 @@ const UploadProduct = () => {
   // const [file, setFile] = useState("");
   const dispatch = useDispatch();
   const [productFormData, setProductFormData] = useState({
+    image: "",
     name: "",
     price: "",
     brand: "",
@@ -21,26 +22,10 @@ const UploadProduct = () => {
     description: "",
   });
 
-  const { name, price, brand, category, countInStock, description } =
+  const { image, name, price, brand, category, countInStock, description } =
     productFormData;
 
-  const { path } = useSelector((state) => state.createProduct);
-
-  const addImageToPost = (e) => {
-    // setFile(e.target.files[0]);
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append("image", file);
-    dispatch(uploadProductImage(formData));
-
-    // const reader = new FileReader();
-    // if (e.target.files[0]) {
-    //   reader.readAsDataURL(e.target.files[0]);
-    // }
-    // reader.onload = (readerEvent) => {
-    //   setSelectedFile(readerEvent.target.result);
-    // };
-  };
+  const { loading } = useSelector((state) => state.createProduct);
 
   const handleFormData = (e) => {
     setProductFormData({ ...productFormData, [e.target.name]: e.target.value });
@@ -48,7 +33,7 @@ const UploadProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (path === "") {
+    if (image === "") {
       toast.error("No Image Found");
     } else {
       dispatch(
@@ -56,7 +41,7 @@ const UploadProduct = () => {
           {
             name: name,
             price: price,
-            image: path,
+            image: image,
             brand: brand,
             category: category,
             countInStock: countInStock,
@@ -65,48 +50,51 @@ const UploadProduct = () => {
           // toast
         )
       );
+      if (loading) {
+        setProductFormData({
+          image: "",
+          name: "",
+          price: "",
+          brand: "",
+          category: "",
+          countInStock: "",
+          description: "",
+        });
+      }
     }
   };
   return (
     <div className="max-w-xl mx-auto mb-5">
       {/* upload image */}
       <div className="rounded-2xl max-h-90 w-auto border-2 border-dashed mb-4">
-        {path && (
+        {image && (
           <div className="relative mb-4">
-            <div
-              className="absolute w-8 h-8 bg-[#15181c] hover:bg-[#272c26] bg-opacity-75 rounded-full flex items-center justify-center top-1 left-1 cursor-pointer"
-              onClick={() => path(null)}
-            >
-              <XIcon className="text-white h-5" />
-            </div>
             <img
-              src={path}
+              src={image}
               alt=""
               className="rounded-2xl max-h-80 object-contain"
             />
           </div>
         )}
-        {!path && (
-          <div className="flex items-center justify-center gap-3 p-4">
-            <p
-              onClick={() => inputImageRef.current.click()}
-              className="cursor-pointer"
-            >
-              <CameraIcon className="w-10 h-10" />
-            </p>
-          </div>
-        )}
       </div>
-      <input
-        type="file"
-        name=""
-        id=""
-        hidden
-        ref={inputImageRef}
-        onChange={addImageToPost}
-      />
 
       <form onSubmit={handleSubmit} className="">
+        <div className="mb-2">
+          <label
+            htmlFor="name"
+            className="text-sm block font-semibold text-gray-700"
+          >
+            Image Url
+          </label>
+          <input
+            type="text"
+            name="image"
+            id="image"
+            value={image}
+            onChange={handleFormData}
+            className="mt-1 p-2 block rounded-md shadow-sm border-2 border-gray-500 sm:text-sm w-full"
+          />
+        </div>
         <div className="mb-2">
           <label
             htmlFor="name"

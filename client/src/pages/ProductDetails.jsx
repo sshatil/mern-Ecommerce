@@ -71,9 +71,9 @@ const ProductDetails = () => {
                 </div>
                 {/* details */}
                 <div className="mt-4 lg:row-span-3 lg:mt-0">
-                  <h2 className="">{name}</h2>
-                  <p className="text-3xl tracking-tight text-gray-900">
-                    {price}
+                  <h2 className="text-2xl">{name}</h2>
+                  <p className="text-3xl tracking-tight text-gray-900 mt-2">
+                    $ {price}
                   </p>
 
                   <div className="mt-6">
@@ -98,9 +98,9 @@ const ProductDetails = () => {
                   <div className="mt-10">
                     {/* description */}
                     <div>
-                      <h3 className="">Description</h3>
+                      <h3 className="font-bold mb-3 text-lg">Description</h3>
 
-                      <div className="space-y-6">
+                      <div className="space-y-6 whitespace-pre-wrap">
                         <p className="text-base text-gray-900">{description}</p>
                       </div>
                     </div>
