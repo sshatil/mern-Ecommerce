@@ -94,7 +94,7 @@ export const createProduct = (state = { path: "", loading: true }, action) => {
       return {
         ...state,
         loading: false,
-        path: payload,
+        path: payload.secure_url,
       };
     case CREATE_PRODUCT:
       return {
