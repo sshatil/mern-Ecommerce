@@ -14,19 +14,22 @@ const Header = () => {
   const items = products?.map((product) => {
     return (
       <Link to={`/details/${product._id}`} key={product._id}>
-        <div className="h-[200px] md:h-[300px] flex flex-col justify-center items-center gradient gap-4 cursor-pointer">
-          <div className="">
+        <div className="h-[200px] md:h-[300px] flex flex-col justify-center items-center gradient gap-2 cursor-pointer">
+          {/* <div className="">
             <h1 className="md:text-xl text-lg">{product.name.substr(0, 14)}</h1>
-          </div>
+          </div> */}
           <div className="flex justify-between items-center lg:w-36 lg:h-36 md:w-36 md:h-36 sm:w-36 sm:h-36 w-24 h-24">
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-full object-center object-cover rounded-full"
+              className="w-full h-full object-center object-cover"
             />
           </div>
+          {/* <div className="">
+            <h1 className="md:text-xl text-lg">{product.name.substr(0, 18)}</h1>
+          </div> */}
           <div className="">
-            <h6 className="md:text-xl text-sm font-bold">
+            <h6 className="md:text-lg text-sm font-semibold text-gray-700">
               Price: ${product.price}
             </h6>
           </div>
@@ -66,6 +69,9 @@ const Header = () => {
     },
     1024: {
       items: 4,
+    },
+    1360: {
+      items: 5,
     },
   };
   return (
