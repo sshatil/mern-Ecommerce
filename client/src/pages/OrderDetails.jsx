@@ -10,54 +10,21 @@ import {
 } from "../redux/actions/orderActions";
 import Layout from "../utils/Layout";
 import toast from "react-hot-toast";
-import { CheckCircleIcon } from "@heroicons/react/outline";
-import CircleSpinner from "../assets/loadingGif/cricleSpinner.gif";
 import Loading from "../utils/loading/Loading";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { CheckCircleIcon } from "@heroicons/react/outline";
 
 const OrderDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  // state for paypal payment
-  const [sdkReady, setSdkReady] = useState(false);
-
   const { loading, orderItem } = useSelector((state) => state.orderDetails);
   const { loading: loadingPay, success: successPay } = useSelector(
     (state) => state.orderPay
   );
-
-  // useEffect(() => {
-  //   // Paypal Payment
-  //   const addPaypalScript = async () => {
-  //     const { data: clientId } = await axios.get("/api/config/paypal");
-  //     const script = document.createElement("script");
-  //     script.type = "text/javascript";
-  //     script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
-  //     script.async = true;
-  //     script.onload = () => {
-  //       setSdkReady(true);
-  //     };
-  //     document.body.appendChild(script);
-  //   };
-
-  //   if (!orderItem || successPay) {
-  //     dispatch({ type: ORDER_PAY_RESET });
-  //     dispatch(userOrderDetails(id));
-  //   } else if (!orderItem.isPaid) {
-  //     if (!window.paypal) {
-  //       addPaypalScript();
-  //     } else {
-  //       setSdkReady(true);
-  //     }
-  //   }
-  // }, [dispatch, id, successPay, orderItem]);
-
-  // const [paymentResult, setPaymentResult] = useState({
-  //   id: id,
-  //   status: "success",
-  //   update_time: Date.now(),
-  //   email_address: orderItem ? orderItem.user.email : null,
-  // });
+  // paypal payment
+  const [paypalPaymentDetails, setPaypalPaymentDetails] = useState({});
+  const [paymentLoading, setPaypalLoading] = useState(true);
 
   useEffect(() => {
     dispatch(userOrderDetails(id));
@@ -68,9 +35,12 @@ const OrderDetails = () => {
     status: "success",
   };
 
-  const handlePayment = () => {
-    dispatch(userOrderPayment(id, paymentResult, toast));
-  };
+  useEffect(() => {
+    if (paypalPaymentDetails.status === "COMPLETED") {
+      dispatch(userOrderPayment(id, paymentResult, toast));
+      setPaypalPaymentDetails({});
+    }
+  }, [paymentLoading, dispatch]);
   if (loading) {
     return <Loading />;
   }
@@ -85,20 +55,37 @@ const OrderDetails = () => {
         <div className="md:w-4/12">
           <OrderSummary />
           {/* <PayPalButton /> */}
-          {/* {!successPay && !orderItem.isPaid ? ( */}
+
           {!orderItem.isPaid ? (
-            <button
-              onClick={handlePayment}
-              className="bg-[#FFC439] w-full p-2 rounded font-bold"
-            >
-              {!loadingPay ? (
-                <p>PayPal</p>
-              ) : (
-                <p className="flex justify-center">
-                  <img src={CircleSpinner} alt="" className="w-6 h-6" />
-                </p>
-              )}
-            </button>
+            <div className="">
+              <PayPalScriptProvider
+                options={{
+                  "client-id":
+                    "AW9pdVuQB2QxZBmkva8uwygXM_wKk6Q8G5MS8UtsQ-D8aTgSEMY8a-G1i20dL2ZNcvPL9WkIEM7EOsqX",
+                }}
+              >
+                <PayPalButtons
+                  style={{ layout: "horizontal" }}
+                  createOrder={(data, actions) => {
+                    return actions.order.create({
+                      purchase_units: [
+                        {
+                          amount: {
+                            value: orderItem.totalPrice,
+                          },
+                        },
+                      ],
+                    });
+                  }}
+                  onApprove={async function (data, actions) {
+                    return actions.order.capture().then(function (details) {
+                      setPaypalPaymentDetails(details);
+                      setPaypalLoading(false);
+                    });
+                  }}
+                />
+              </PayPalScriptProvider>
+            </div>
           ) : (
             <div className="bg-green-600 w-full p-2 rounded font-bold text-center flex justify-center">
               <p className="text-white">

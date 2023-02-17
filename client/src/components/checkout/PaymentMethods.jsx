@@ -10,7 +10,7 @@ const PaymentMethods = ({ paymentMethod, setPaymentMethod }) => {
         id="PayPal"
         onChange={(e) => setPaymentMethod(e.target.value)}
         value="PayPal"
-        className="mr-3"
+        className="mr-3 cursor-pointer"
       />
       <label htmlFor="PayPal">PayPal</label>
     </div>
