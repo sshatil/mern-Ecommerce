@@ -15,7 +15,7 @@ const SingleProduct = ({ product }) => {
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-full object-center group-hover:opacity-75"
+            className="w-full h-full object-contain group-hover:opacity-75"
           />
         </div>
         <h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>

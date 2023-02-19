@@ -65,6 +65,14 @@ const UploadProduct = () => {
           // toast
         )
       );
+      setProductFormData({
+        name: "",
+        price: "",
+        brand: "",
+        category: "",
+        countInStock: "",
+        description: "",
+      });
     }
   };
   return (

@@ -22,7 +22,7 @@ const Header = () => {
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-full object-center object-cover"
+              className="w-full h-full object-contain"
             />
           </div>
           {/* <div className="">

@@ -20,7 +20,7 @@ export const getProducts =
       setLoading(false);
       dispatch({
         type: GET_PRODUCTS,
-        payload: res.data.products,
+        payload: res.data,
       });
     } catch (error) {
       console.log(error);

@@ -100,7 +100,7 @@ const ProductDetails = () => {
                     <div>
                       <h3 className="">Description</h3>
 
-                      <div className="space-y-6">
+                      <div className="space-y-6 whitespace-pre-wrap">
                         <p className="text-base text-gray-900">{description}</p>
                       </div>
                     </div>

@@ -5,11 +5,10 @@ import Product from "../models/productModel.js";
 // @route   GET /api/products
 // @access  Public
 const getProducts = asyncHandler(async (req, res) => {
-  // const pageSize = 8;
-  // const page = Number(req.query.pageNumber) || 1;
+  const pageSize = 4;
+  const page = Number(req.query.pageNumber) || 1;
   const name = req.query.name || "";
   const category = req.query.category || "";
-  // const seller = req.query.seller || "";
   const order = req.query.order || "";
   const min =
     req.query.min && Number(req.query.min) !== 0 ? Number(req.query.min) : 0;
@@ -21,7 +20,6 @@ const getProducts = asyncHandler(async (req, res) => {
       : 0;
 
   const nameFilter = name ? { name: { $regex: name, $options: "i" } } : {};
-  // const sellerFilter = seller ? { seller } : {};
   const categoryFilter = category ? { category } : {};
   const priceFilter = min && max ? { price: { $gte: min, $lte: max } } : {};
   const ratingFilter = rating ? { rating: { $gte: rating } } : {};
@@ -34,25 +32,22 @@ const getProducts = asyncHandler(async (req, res) => {
       ? { rating: -1 }
       : { _id: -1 };
   const count = await Product.count({
-    // ...sellerFilter,
     ...nameFilter,
     ...categoryFilter,
     ...priceFilter,
     ...ratingFilter,
   });
   const products = await Product.find({
-    // ...sellerFilter,
     ...nameFilter,
     ...categoryFilter,
     ...priceFilter,
     ...ratingFilter,
   })
-    // .populate("seller", "seller.name seller.logo")
-    .sort(sortOrder);
-  // .skip(pageSize * (page - 1))
-  // .limit(pageSize);
-  res.status(200).json({ products });
-  // res.status(200).json({ products, page, pages: Math.ceil(count / pageSize) });
+    .sort(sortOrder)
+    .skip(pageSize * (page - 1))
+    .limit(pageSize);
+  // res.status(200).json({ products });
+  res.status(200).json({ products, page, pages: Math.ceil(count / pageSize) });
 });
 
 // Todo get products filter by brand

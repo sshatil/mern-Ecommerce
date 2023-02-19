@@ -8,7 +8,7 @@ import SingleProduct from "./SingleProduct";
 
 const Products = ({ showSidebar, setShowSidebar }) => {
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.product);
+  const { products } = useSelector((state) => state.product.products);
   const [name, setName] = useState("");
   const [categoryName, setCategoryName] = useState("");
   const [min, setMin] = useState("");
@@ -28,16 +28,16 @@ const Products = ({ showSidebar, setShowSidebar }) => {
   const [pageCount, setPageCount] = useState(0);
   const itemsPerPage = 12;
 
-  useEffect(() => {
-    const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(products.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(products.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, products]);
+  // useEffect(() => {
+  //   const endOffset = itemOffset + itemsPerPage;
+  //   setCurrentItems(products.slice(itemOffset, endOffset));
+  //   setPageCount(Math.ceil(products.length / itemsPerPage));
+  // }, [itemOffset, itemsPerPage, products]);
   // Invoke when user click to request another page.
-  const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % products.length;
-    setItemOffset(newOffset);
-  };
+  // const handlePageClick = (event) => {
+  //   const newOffset = (event.selected * itemsPerPage) % products.length;
+  //   setItemOffset(newOffset);
+  // };
   return (
     <div className="w-full overflow-hidden">
       {/* sidebar btn */}
@@ -54,14 +54,19 @@ const Products = ({ showSidebar, setShowSidebar }) => {
           {/* <h2 className="">Products</h2> */}
 
           <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            {currentItems?.map((product) => (
+            {/* {currentItems?.map((product) => (
+              <>
+                <SingleProduct product={product} key={product._id} />
+              </>
+            ))} */}
+            {products?.map((product) => (
               <>
                 <SingleProduct product={product} key={product._id} />
               </>
             ))}
           </div>
           <div className="my-8">
-            <ReactPaginate
+            {/* <ReactPaginate
               breakLabel="..."
               nextLabel=">"
               onPageChange={handlePageClick}
@@ -74,7 +79,7 @@ const Products = ({ showSidebar, setShowSidebar }) => {
               previousLinkClassName="page-arrow"
               nextLinkClassName="page-arrow"
               activeLinkClassName="active"
-            />
+            /> */}
           </div>
         </div>
       </div>
