@@ -11,11 +11,18 @@ import {
 } from "../types";
 
 export const getProducts =
-  (name = "", categoryName = "", min = "", max = "", rating = "") =>
+  (
+    pageNumbers = "1",
+    name = "",
+    categoryName = "",
+    min = "",
+    max = "",
+    rating = ""
+  ) =>
   async (dispatch) => {
     try {
       const res = await axios.get(
-        `/api/products?name=${name}&category=${categoryName}&min=${min}&max=${max}&rating=${rating}`
+        `/api/products?pageNumber=${pageNumbers}&name=${name}&category=${categoryName}&min=${min}&max=${max}&rating=${rating}`
       );
       // setLoading(false);
       dispatch({

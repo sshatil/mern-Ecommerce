@@ -7,6 +7,7 @@ import RatingStar from "../utils/RatingStar";
 const SideBar = ({ showSidebar, setShowSidebar }) => {
   const dispatch = useDispatch();
   // const [price, setPrice] = useState([]);
+  const [pageNumbers, setPageNumbers] = useState(1);
   const [name, setName] = useState("");
   const [categoryName, setCategoryName] = useState("");
   const [min, setMin] = useState(1);
@@ -24,12 +25,12 @@ const SideBar = ({ showSidebar, setShowSidebar }) => {
   };
 
   const getProductsByCategory = (categoryName) => {
-    dispatch(getProducts(name, categoryName, min, max, rating));
+    dispatch(getProducts(pageNumbers, name, categoryName, min, max, rating));
   };
 
   useEffect(() => {
-    dispatch(getProducts(name, categoryName, min, max, rating));
-  }, [dispatch, name, categoryName, min, max, rating]);
+    dispatch(getProducts(pageNumbers, name, categoryName, min, max, rating));
+  }, [dispatch, pageNumbers, name, categoryName, min, max, rating]);
 
   // const handlePrices = (e) => {
   //   setPrice(e.target.value);

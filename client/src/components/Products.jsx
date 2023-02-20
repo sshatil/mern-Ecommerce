@@ -12,7 +12,7 @@ const Products = ({ showSidebar, setShowSidebar }) => {
   const { products, page, pages } = useSelector(
     (state) => state.product.products
   );
-  const [pageNumber, setPageNumber] = useState(0);
+  const [pageNumbers, setPageNumbers] = useState(1);
   const [name, setName] = useState("");
   const [categoryName, setCategoryName] = useState("");
   const [min, setMin] = useState("");
@@ -20,8 +20,8 @@ const Products = ({ showSidebar, setShowSidebar }) => {
   const [rating, setRating] = useState("");
   // const [loading, setLoading] = useState(true);
   useEffect(() => {
-    dispatch(getProducts(name, categoryName, min, max, rating));
-  }, [dispatch, name, categoryName, min, max, rating]);
+    dispatch(getProducts(pageNumbers, name, categoryName, min, max, rating));
+  }, [dispatch, pageNumbers, name, categoryName, min, max, rating]);
 
   // pagination
   // const [itemOffset, setItemOffset] = useState(0);
@@ -40,9 +40,9 @@ const Products = ({ showSidebar, setShowSidebar }) => {
   //   setItemOffset(newOffset);
   // };
   const handlePageClick = (event) => {
-    setPageNumber(event.selected);
+    setPageNumbers(event.selected + 1);
   };
-  console.log(pageNumber);
+  console.log(pageNumbers);
   const { isLoading } = useSelector((state) => state.product);
   if (isLoading) {
     return <ProductLoading />;
@@ -88,6 +88,8 @@ const Products = ({ showSidebar, setShowSidebar }) => {
               previousLinkClassName="page-arrow"
               nextLinkClassName="page-arrow"
               activeLinkClassName="active"
+              // initialPage={2}
+              forcePage={0}
             />
           </div>
         </div>
