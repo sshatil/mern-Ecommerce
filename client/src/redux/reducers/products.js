@@ -11,7 +11,7 @@ import {
 
 const initialState = {
   products: [],
-  loading: true,
+  isLoading: true,
 };
 
 export const product = (state = initialState, action) => {
@@ -21,7 +21,7 @@ export const product = (state = initialState, action) => {
       return {
         ...state,
         products: payload,
-        loading: false,
+        isLoading: false,
       };
     default:
       return state;
@@ -73,13 +73,17 @@ export const topProducts = (
 };
 
 // GET category list
-export const categoryList = (state = { category: [] }, action) => {
+export const categoryList = (
+  state = { category: [], loading: true },
+  action
+) => {
   const { type, payload } = action;
   switch (type) {
     case GET_CATEGORIES:
       return {
         ...state,
         category: payload,
+        loading: false,
       };
     default:
       return state;

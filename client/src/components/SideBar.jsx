@@ -12,24 +12,23 @@ const SideBar = ({ showSidebar, setShowSidebar }) => {
   const [min, setMin] = useState(1);
   const [max, setMax] = useState("");
   const [rating, setRating] = useState("");
-  const [loading, setLoading] = useState(true);
   // rating
 
   useEffect(() => {
     dispatch(getCategoryList());
   }, [dispatch]);
-  const { category } = useSelector((state) => state.categoryList);
+  const { category, loading } = useSelector((state) => state.categoryList);
 
   const capitalizeFirst = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
 
   const getProductsByCategory = (categoryName) => {
-    dispatch(getProducts(name, categoryName, min, max, rating, setLoading));
+    dispatch(getProducts(name, categoryName, min, max, rating));
   };
 
   useEffect(() => {
-    dispatch(getProducts(name, categoryName, min, max, rating, setLoading));
+    dispatch(getProducts(name, categoryName, min, max, rating));
   }, [dispatch, name, categoryName, min, max, rating]);
 
   // const handlePrices = (e) => {

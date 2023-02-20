@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import ProductLoading from "../utils/loading/ProductLoading";
 
 const SingleProduct = ({ product }) => {
-  const { loading } = useSelector((state) => state.product);
-  if (loading) {
-    return <ProductLoading />;
-  }
+  // const { isLoading } = useSelector((state) => state.product);
+  // if (isLoading) {
+  //   return <ProductLoading />;
+  // }
   return (
     <Link to={`/details/${product._id}`}>
       <div className="group cursor-pointer">

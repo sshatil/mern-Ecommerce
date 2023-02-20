@@ -5,28 +5,29 @@ import ReactPaginate from "react-paginate";
 import { getProducts } from "../redux/actions/proudctActions";
 import SearchBar from "./SearchBar";
 import SingleProduct from "./SingleProduct";
+import ProductLoading from "../utils/loading/ProductLoading";
 
 const Products = ({ showSidebar, setShowSidebar }) => {
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.product.products);
+  const { products, page, pages } = useSelector(
+    (state) => state.product.products
+  );
+  const [pageNumber, setPageNumber] = useState(0);
   const [name, setName] = useState("");
   const [categoryName, setCategoryName] = useState("");
   const [min, setMin] = useState("");
   const [max, setMax] = useState("");
   const [rating, setRating] = useState("");
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   useEffect(() => {
-    dispatch(getProducts(name, categoryName, min, max, rating, setLoading));
-  }, [dispatch, name, categoryName, min, max, rating, loading]);
-  // useEffect(() => {
-  //   setName("");
-  // }, [loading]);
+    dispatch(getProducts(name, categoryName, min, max, rating));
+  }, [dispatch, name, categoryName, min, max, rating]);
 
   // pagination
-  const [itemOffset, setItemOffset] = useState(0);
-  const [currentItems, setCurrentItems] = useState(null);
-  const [pageCount, setPageCount] = useState(0);
-  const itemsPerPage = 12;
+  // const [itemOffset, setItemOffset] = useState(0);
+  // const [currentItems, setCurrentItems] = useState(null);
+  // const [pageCount, setPageCount] = useState(0);
+  // const itemsPerPage = 12;
 
   // useEffect(() => {
   //   const endOffset = itemOffset + itemsPerPage;
@@ -38,6 +39,14 @@ const Products = ({ showSidebar, setShowSidebar }) => {
   //   const newOffset = (event.selected * itemsPerPage) % products.length;
   //   setItemOffset(newOffset);
   // };
+  const handlePageClick = (event) => {
+    setPageNumber(event.selected);
+  };
+  console.log(pageNumber);
+  const { isLoading } = useSelector((state) => state.product);
+  if (isLoading) {
+    return <ProductLoading />;
+  }
   return (
     <div className="w-full overflow-hidden">
       {/* sidebar btn */}
@@ -66,12 +75,12 @@ const Products = ({ showSidebar, setShowSidebar }) => {
             ))}
           </div>
           <div className="my-8">
-            {/* <ReactPaginate
+            <ReactPaginate
               breakLabel="..."
               nextLabel=">"
               onPageChange={handlePageClick}
               pageRangeDisplayed={3}
-              pageCount={pageCount}
+              pageCount={pages}
               previousLabel="<"
               renderOnZeroPageCount={null}
               containerClassName="pagination"
@@ -79,7 +88,7 @@ const Products = ({ showSidebar, setShowSidebar }) => {
               previousLinkClassName="page-arrow"
               nextLinkClassName="page-arrow"
               activeLinkClassName="active"
-            /> */}
+            />
           </div>
         </div>
       </div>

@@ -11,13 +11,13 @@ import {
 } from "../types";
 
 export const getProducts =
-  (name = "", categoryName = "", min = "", max = "", rating = "", setLoading) =>
+  (name = "", categoryName = "", min = "", max = "", rating = "") =>
   async (dispatch) => {
     try {
       const res = await axios.get(
         `/api/products?name=${name}&category=${categoryName}&min=${min}&max=${max}&rating=${rating}`
       );
-      setLoading(false);
+      // setLoading(false);
       dispatch({
         type: GET_PRODUCTS,
         payload: res.data,
