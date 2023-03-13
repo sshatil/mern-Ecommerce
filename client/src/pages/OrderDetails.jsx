@@ -13,10 +13,14 @@ import toast from "react-hot-toast";
 import Loading from "../utils/loading/Loading";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { CheckCircleIcon } from "@heroicons/react/outline";
+import CardPaymentModal from "../components/orderDetails/CardPaymentModal";
 
 const OrderDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+
+  // modal
+  const [open, setOpen] = useState(false);
 
   const { loading, orderItem } = useSelector((state) => state.orderDetails);
   const { loading: loadingPay, success: successPay } = useSelector(
@@ -57,7 +61,7 @@ const OrderDetails = () => {
           {/* <PayPalButton /> */}
 
           {!orderItem.isPaid ? (
-            <div className="">
+            <div className="opacity-90">
               <PayPalScriptProvider
                 options={{
                   "client-id":
@@ -93,6 +97,32 @@ const OrderDetails = () => {
               </p>
             </div>
           )}
+          <div className="">
+            {/* <p>Union Pay</p>
+            <p>Visa Pay</p>
+            <p>Master Card</p>
+            <p>Credit Card</p> */}
+            <button onClick={() => setOpen(!open)}>Card Payment</button>
+            <CardPaymentModal open={open} setOpen={setOpen} />
+            {/* <form>
+              <div className="mb-2">
+                <label
+                  htmlFor="address"
+                  className="text-sm block font-semibold text-gray-700"
+                >
+                  Card Number
+                </label>
+                <input
+                  type="text"
+                  name="address"
+                  id="address"
+                  value=""
+                  // onChange={handleFormData}
+                  className="mt-1 p-2 block rounded-md shadow-sm border-2 border-gray-500 sm:text-sm w-full"
+                />
+              </div>
+            </form> */}
+          </div>
         </div>
       </div>
     </Layout>
