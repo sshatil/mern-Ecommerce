@@ -2,10 +2,22 @@ import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 // import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { FcSimCardChip } from "react-icons/fc";
+import CardPaymentForm from "./CardPaymentForm";
 
 const CardPaymentModal = ({ open, setOpen }) => {
   const cancelButtonRef = useRef(null);
-  const cardNumber = "1237453759840955";
+  // form value
+  const [formData, setFormData] = useState({
+    bankName: "",
+    bankNumber: "",
+    expireDate: "",
+    userName: "",
+  });
+  const { bankName, bankNumber, expireDate, userName } = formData;
+  console.log(formData);
+
+  const number = "xxxxxxxxxxxxxxxx";
+  const cardNumber = bankNumber === "" ? number : bankNumber;
   const firstFourDigit = cardNumber.slice(0, 4);
   const secondFourDigit = cardNumber.slice(4, 8);
   const thirdFourDigit = cardNumber.slice(8, 12);
@@ -43,16 +55,18 @@ const CardPaymentModal = ({ open, setOpen }) => {
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
               <Dialog.Panel
-                className="relative transform overflow-hidden rounded-lg bg-yellow-400 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg flex justify-center"
+                className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg flex flex-col items-center"
                 style={{
                   backgroundImage:
                     'url("https://images.unsplash.com/photo-1628527304948-06157ee3c8a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGF5bWVudHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60")',
                   backgroundRepeat: "no-repeat",
-                  objectFit: "cover",
+                  backgroundSize: "cover",
                 }}
               >
-                <div className="h-48 md:h-56 m-3 md:m-3 rounded-lg p-4 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg px-6 text-gray-600">
-                  <div className="text-lg font-bold">Bank Of China</div>
+                <div className="h-48 md:h-56 w-60 md:w-96 m-3 md:m-3 rounded-lg p-4 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg px-6 text-gray-600">
+                  <div className="text-lg font-bold uppercase italic ">
+                    {bankName === "" ? "xxxxxx" : bankName}
+                  </div>
                   <div className="">
                     <p>
                       <FcSimCardChip className="w-14 h-14" />
@@ -70,13 +84,13 @@ const CardPaymentModal = ({ open, setOpen }) => {
                       <p>VALID</p>
                       <p>THRU</p>
                     </div>
-                    <p>12/30</p>
+                    <p>{expireDate === "" ? "xxxx-xx-xx" : expireDate}</p>
                   </div>
                   {/* */}
                   {/* Bank user name and card type */}
-                  <div className="flex justify-between">
-                    <h1>User Name</h1>
-                    <div className="">VISA</div>
+                  <div className="flex justify-between uppercase">
+                    <h1>{userName === "" ? "xxxxxxx" : userName}</h1>
+                    <div className="uppercase">VISA</div>
                   </div>
                 </div>
                 {/* <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
@@ -96,6 +110,11 @@ const CardPaymentModal = ({ open, setOpen }) => {
                     Cancel
                   </button>
                 </div> */}
+                {/* input bank details */}
+                <CardPaymentForm
+                  formData={formData}
+                  setFormData={setFormData}
+                />
               </Dialog.Panel>
             </Transition.Child>
           </div>
