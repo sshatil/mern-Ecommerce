@@ -3,18 +3,17 @@ import { Dialog, Transition } from "@headlessui/react";
 // import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { FcSimCardChip } from "react-icons/fc";
 import CardPaymentForm from "./CardPaymentForm";
+import { AiOutlineClose } from "react-icons/ai";
 
-const CardPaymentModal = ({ open, setOpen }) => {
+const CardPaymentModal = ({
+  open,
+  setOpen,
+  handleCardPayment,
+  formData,
+  setFormData,
+}) => {
   const cancelButtonRef = useRef(null);
-  // form value
-  const [formData, setFormData] = useState({
-    bankName: "",
-    bankNumber: "",
-    expireDate: "",
-    userName: "",
-  });
-  const { bankName, bankNumber, expireDate, userName } = formData;
-  console.log(formData);
+  const { bankName, bankNumber, expireDate, userName, cardType } = formData;
 
   const number = "xxxxxxxxxxxxxxxx";
   const cardNumber = bankNumber === "" ? number : bankNumber;
@@ -88,33 +87,31 @@ const CardPaymentModal = ({ open, setOpen }) => {
                   </div>
                   {/* */}
                   {/* Bank user name and card type */}
-                  <div className="flex justify-between uppercase">
+                  <div className="flex justify-between uppercase font-bold">
                     <h1>{userName === "" ? "xxxxxxx" : userName}</h1>
-                    <div className="uppercase">VISA</div>
+                    <div className="uppercase font-bold">
+                      {cardType === "" ? "xxxx" : cardType}
+                    </div>
                   </div>
                 </div>
-                {/* <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                  <button
-                    type="button"
-                    className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-                    onClick={() => setOpen(false)}
-                  >
-                    Deactivate
-                  </button>
-                  <button
-                    type="button"
-                    className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                    onClick={() => setOpen(false)}
-                    ref={cancelButtonRef}
-                  >
-                    Cancel
-                  </button>
-                </div> */}
-                {/* input bank details */}
+                {/* Payment form */}
                 <CardPaymentForm
                   formData={formData}
                   setFormData={setFormData}
                 />
+                <button
+                  onClick={handleCardPayment}
+                  className="hover:bg-green-500 transition ease-in-out bg-white p-2 px-6 rounded-md font-bold m-2 tran"
+                >
+                  Confirm Pay
+                </button>
+                {/* modal close btn */}
+                <p
+                  className="absolute right-0 p-1 cursor-pointer"
+                  onClick={() => setOpen(!open)}
+                >
+                  <AiOutlineClose className="w-7 h-7 text-white hover:text-red-500" />
+                </p>
               </Dialog.Panel>
             </Transition.Child>
           </div>

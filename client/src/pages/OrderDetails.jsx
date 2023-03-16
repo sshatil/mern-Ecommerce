@@ -21,6 +21,15 @@ const OrderDetails = () => {
 
   // modal
   const [open, setOpen] = useState(false);
+  // modal form data for card details
+  const [formData, setFormData] = useState({
+    bankName: "",
+    bankNumber: "",
+    expireDate: "",
+    userName: "",
+    cardType: "",
+  });
+  const { bankName, bankNumber, expireDate, userName, cardType } = formData;
 
   const { loading, orderItem } = useSelector((state) => state.orderDetails);
   const { loading: loadingPay, success: successPay } = useSelector(
@@ -39,6 +48,23 @@ const OrderDetails = () => {
     status: "success",
   };
 
+  // card payment submit btn
+  const handleCardPayment = (e) => {
+    e.preventDefault();
+    if (!bankName || !bankNumber || !expireDate || !userName || !cardType) {
+      console.log("fdsf");
+    } else {
+      dispatch(userOrderPayment(id, paymentResult, toast));
+      setFormData({
+        bankName: "",
+        bankNumber: "",
+        expireDate: "",
+        userName: "",
+        cardType: "",
+      });
+    }
+  };
+
   useEffect(() => {
     if (paypalPaymentDetails.status === "COMPLETED") {
       dispatch(userOrderPayment(id, paymentResult, toast));
@@ -51,7 +77,7 @@ const OrderDetails = () => {
 
   return (
     <Layout>
-      <div className="pt-20 md:flex">
+      <div className="pt-20 md:flex mb-10">
         <div className="md:w-8/12 md:mr-2">
           <ShippingDetails />
           <OrderProducts />
@@ -102,8 +128,22 @@ const OrderDetails = () => {
             <p>Visa Pay</p>
             <p>Master Card</p>
             <p>Credit Card</p> */}
-            <button onClick={() => setOpen(!open)}>Card Payment</button>
-            <CardPaymentModal open={open} setOpen={setOpen} />
+            {!orderItem.isPaid && (
+              <button
+                onClick={() => setOpen(!open)}
+                className="bg-green-500 opacity-90 w-full p-2 text-xl font-bold text-white rounded-md hover:opacity-95"
+              >
+                Card Payment
+              </button>
+            )}
+
+            <CardPaymentModal
+              open={open}
+              setOpen={setOpen}
+              handleCardPayment={handleCardPayment}
+              formData={formData}
+              setFormData={setFormData}
+            />
           </div>
         </div>
       </div>

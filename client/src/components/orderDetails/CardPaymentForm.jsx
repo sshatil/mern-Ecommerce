@@ -1,9 +1,13 @@
 import React from "react";
 
 const CardPaymentForm = ({ formData, setFormData }) => {
-  const { bankName, bankNumber, expireDate, userName } = formData;
+  const { bankName, bankNumber, expireDate, userName, cardType } = formData;
   const handleFormData = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleCardType = (e) => {
+    setFormData({ ...formData, cardType: e.target.value });
   };
   return (
     <div className="w-full px-4">
@@ -21,7 +25,7 @@ const CardPaymentForm = ({ formData, setFormData }) => {
             id="bankNumber"
             value={bankNumber}
             onChange={handleFormData}
-            className="mt-1 p-2 block rounded-md shadow-sm border-2 border-gray-500 sm:text-sm w-full"
+            className="mt-1 p-2 block rounded-md shadow-sm   sm:text-sm w-full"
           />
         </div>
         {/* expire date & card type */}
@@ -39,14 +43,18 @@ const CardPaymentForm = ({ formData, setFormData }) => {
               id="expireDate"
               value={expireDate}
               onChange={handleFormData}
-              className="mt-1 p-2 block rounded-md shadow-sm border-2 border-gray-500 sm:text-sm w-full"
+              className="mt-1 p-2 block rounded-md shadow-sm   sm:text-sm w-full"
             />
           </div>
-          <div className="w-full mt-3">
-            <select name="" id="" className="w-full p-2">
-              <option value="visa" selected>
-                VISA
-              </option>
+          <div className="w-full mt-6 mb-2 rounded-md">
+            <select
+              name=""
+              id=""
+              className="w-full p-[8px] rounded-md text-sm"
+              onChange={handleCardType}
+            >
+              <option value="">Card Type</option>
+              <option value="visa">VISA</option>
               <option value="master card">MASTER CARD</option>
             </select>
           </div>
@@ -67,7 +75,7 @@ const CardPaymentForm = ({ formData, setFormData }) => {
               id="bankName"
               value={bankName}
               onChange={handleFormData}
-              className="mt-1 p-2 block rounded-md shadow-sm border-2 border-gray-500 sm:text-sm w-full"
+              className="mt-1 p-2 block rounded-md shadow-sm   sm:text-sm w-full"
             />
           </div>
 
@@ -84,7 +92,7 @@ const CardPaymentForm = ({ formData, setFormData }) => {
               id="userName"
               value={userName}
               onChange={handleFormData}
-              className="mt-1 p-2 block rounded-md shadow-sm border-2 border-gray-500 sm:text-sm w-full"
+              className="mt-1 p-2 block rounded-md shadow-sm   sm:text-sm w-full"
             />
           </div>
         </div>
