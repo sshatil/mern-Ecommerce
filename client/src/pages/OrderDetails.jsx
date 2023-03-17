@@ -52,7 +52,7 @@ const OrderDetails = () => {
   const handleCardPayment = (e) => {
     e.preventDefault();
     if (!bankName || !bankNumber || !expireDate || !userName || !cardType) {
-      console.log("fdsf");
+      toast.error("Fill all the input field");
     } else {
       dispatch(userOrderPayment(id, paymentResult, toast));
       setFormData({
@@ -62,6 +62,7 @@ const OrderDetails = () => {
         userName: "",
         cardType: "",
       });
+      setOpen(!open);
     }
   };
 

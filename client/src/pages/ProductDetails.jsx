@@ -59,18 +59,12 @@ const ProductDetails = () => {
           </div>
         ) : (
           <div className="bg-white">
-            <div className="mb-4">
-              {/* Image gallery */}
+            <div className="mb-4 pb-3">
               <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-5xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
                 <div className="overflow-hidden rounded-lg">
-                  <img
-                    src={image}
-                    alt={name}
-                    className="h-full w-full object-cover object-center"
-                  />
+                  <img src={image} alt={name} className="object-fit" />
                 </div>
-                {/* details */}
-                <div className="mt-4 lg:row-span-3 lg:mt-0">
+                <div className="mt-4  lg:mt-0">
                   <h2 className="">{name}</h2>
                   <p className="text-3xl tracking-tight text-gray-900">
                     {price}
@@ -96,7 +90,6 @@ const ProductDetails = () => {
                   </div>
 
                   <div className="mt-10">
-                    {/* description */}
                     <div>
                       <h3 className="">Description</h3>
 
@@ -114,7 +107,6 @@ const ProductDetails = () => {
                     </button>
                   </div>
                 </div>
-                {/* right side end */}
               </div>
             </div>
             {/* show similar products */}
