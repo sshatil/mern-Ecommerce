@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   CREATE_USER_ORDER,
+  GET_ORDER_LIST,
   GET_USER_ORDER_LIST,
   ORDER_PAY_REQUEST,
   ORDER_PAY_SUCCESS,
@@ -79,6 +80,24 @@ export const getUserOrderList = (toast) => async (dispatch, getState) => {
     });
     dispatch({
       type: GET_USER_ORDER_LIST,
+      payload: res.data,
+    });
+  } catch (error) {
+    toast.error(error.response.data.message);
+  }
+};
+
+// get all order list (admin)
+export const getOrderList = (toast) => async (dispatch, getState) => {
+  const token = getState().auth.token;
+  try {
+    const res = await axios.get(`/api/orders`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    dispatch({
+      type: GET_ORDER_LIST,
       payload: res.data,
     });
   } catch (error) {

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AdminDashboardSidebar from "../../components/adminPanel/AdminDashboardSidebar";
+import AdminHomePage from "../../components/adminPanel/AdminHomePage";
 import UploadProduct from "../../components/adminPanel/UploadProduct";
 
 const AdminDashboard = () => {
@@ -19,6 +20,7 @@ const AdminDashboard = () => {
       {/* Main Content */}
       <div className="md:w-10/12 w-full pt-20 overflow-scroll md:px-5 px-1 mt-5">
         {/* <DashboardContent /> */}
+        {activeLink === "Home" && <AdminHomePage />}
         {activeLink === "Product" && <UploadProduct />}
       </div>
     </div>

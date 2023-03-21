@@ -1,5 +1,6 @@
 import {
   CREATE_USER_ORDER,
+  GET_ORDER_LIST,
   GET_USER_ORDER_LIST,
   ORDER_PAY_REQUEST,
   ORDER_PAY_RESET,
@@ -64,6 +65,21 @@ export const userOrderList = (state = { orderList: [] }, action) => {
       return {
         ...state,
         orderList: payload,
+        loading: false,
+      };
+    default:
+      return state;
+  }
+};
+
+// get all user list (admin)
+export const orderList = (state = { allOrderList: [] }, action) => {
+  const { type, payload } = action;
+  switch (type) {
+    case GET_ORDER_LIST:
+      return {
+        ...state,
+        allOrderList: payload,
         loading: false,
       };
     default:

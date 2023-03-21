@@ -9,7 +9,13 @@ import {
 import { auth } from "./auth";
 import { cart, shoppingPage } from "./cart";
 import { userProfile } from "./userProfile";
-import { createOrder, orderDetails, orderPay, userOrderList } from "./order";
+import {
+  createOrder,
+  orderDetails,
+  orderPay,
+  userOrderList,
+  orderList,
+} from "./order";
 
 export default combineReducers({
   product,
@@ -25,4 +31,5 @@ export default combineReducers({
   orderPay,
   userOrderList,
   createProduct,
+  orderList,
 });
