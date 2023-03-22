@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrderList } from "../../redux/actions/orderActions";
+import AllOrder from "./AllOrder";
 
 const AdminHomePage = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const AdminHomePage = () => {
           <p className="font-semibold">$ 0</p>
         </div>
       </div>
+      <AllOrder allOrderList={allOrderList} />
     </div>
   );
 };
