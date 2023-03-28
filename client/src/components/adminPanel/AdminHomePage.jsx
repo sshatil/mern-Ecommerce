@@ -5,12 +5,12 @@ import AllOrder from "./AllOrder";
 
 const AdminHomePage = () => {
   const dispatch = useDispatch();
-  const { allOrderList } = useSelector((state) => state.orderList);
+  const { allOrderList, loading } = useSelector((state) => state.orderList);
 
   // fetch order list
   useEffect(() => {
     dispatch(getOrderList());
-  }, [dispatch]);
+  }, [dispatch, loading]);
   return (
     <div>
       <div className="grid grid-col-2 md:grid-cols-4 sm:grid-cols-2 gap-4">

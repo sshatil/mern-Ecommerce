@@ -5,6 +5,7 @@ import {
   GET_USER_ORDER_LIST,
   ORDER_PAY_REQUEST,
   ORDER_PAY_SUCCESS,
+  ORDER_TO_DELIVERED,
   RESET_CART,
   USER_ORDER_DETAILS,
 } from "../types";
@@ -104,3 +105,32 @@ export const getOrderList = (toast) => async (dispatch, getState) => {
     toast.error(error.response.data.message);
   }
 };
+
+// order delivered
+export const orderToDelivered =
+  (orderId, toast) => async (dispatch, getState) => {
+    const token = getState().auth.token;
+    console.log(token);
+    console.log(orderId);
+    try {
+      // dispatch({
+      //   type: ORDER_TO_DELIVERED,
+      // });
+      await axios.put(
+        `/api/orders/${orderId}/deliver`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      dispatch({
+        type: ORDER_TO_DELIVERED,
+        // payload: res.data,
+      });
+      toast.success("Product Delivered");
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };

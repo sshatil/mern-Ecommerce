@@ -1,10 +1,17 @@
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/outline";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { orderToDelivered } from "../../redux/actions/orderActions";
+import { toast } from "react-hot-toast";
 
 const AllOrder = ({ allOrderList }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleOrderDetails = (id) => {
     navigate(`/order/${id}`);
+  };
+  const handleDelivered = (orderId) => {
+    dispatch(orderToDelivered(orderId, toast));
   };
   return (
     <div>
@@ -55,10 +62,18 @@ const AllOrder = ({ allOrderList }) => {
                             <CheckCircleIcon className="w-6 h-6 text-green-500" />
                           </p>
                         ) : (
-                          <select name="" id="">
-                            <option value="">In Progress</option>
-                            <option value="">Completed</option>
-                          </select>
+                          // <select name="" id="">
+                          //   <option value="">In Progress</option>
+                          //   <option
+                          //     value=""
+                          //     onClick={() => handleDelivered(item._id)}
+                          //   >
+                          //     Completed
+                          //   </option>
+                          // </select>
+                          <button onClick={() => handleDelivered(item._id)}>
+                            c
+                          </button>
                         )}
                       </td>
                       <td className="border-b-2 w-2/12 py-2">

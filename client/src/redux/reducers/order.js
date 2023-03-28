@@ -5,6 +5,7 @@ import {
   ORDER_PAY_REQUEST,
   ORDER_PAY_RESET,
   ORDER_PAY_SUCCESS,
+  ORDER_TO_DELIVERED,
   USER_ORDER_DETAILS,
 } from "../types";
 
@@ -81,6 +82,11 @@ export const orderList = (state = { allOrderList: [] }, action) => {
         ...state,
         allOrderList: payload,
         loading: false,
+      };
+    case ORDER_TO_DELIVERED:
+      return {
+        ...state,
+        loading: true,
       };
     default:
       return state;
