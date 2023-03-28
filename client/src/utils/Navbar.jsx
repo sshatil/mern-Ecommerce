@@ -57,18 +57,21 @@ export default function Navbar() {
                     </NavLink>
                   </div>
                 </div>
-                <div className="hidden sm:block sm:ml-6">
-                  <div className="flex space-x-4">
-                    <NavLink
-                      to="/dashboard"
-                      className={({ isActive }) =>
-                        isActive ? isActiveStyle : isNotActiveStyle
-                      }
-                    >
-                      Dashboard
-                    </NavLink>
+                {!isAdmin && (
+                  <div className="hidden sm:block sm:ml-6">
+                    <div className="flex space-x-4">
+                      <NavLink
+                        to="/dashboard"
+                        className={({ isActive }) =>
+                          isActive ? isActiveStyle : isNotActiveStyle
+                        }
+                      >
+                        Dashboard
+                      </NavLink>
+                    </div>
                   </div>
-                </div>
+                )}
+
                 {/* admin panel */}
                 {isAdmin && (
                   <div className="hidden sm:block sm:ml-6">

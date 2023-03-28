@@ -22,10 +22,10 @@ const AllOrder = ({ allOrderList }) => {
               <tr className="border-b-2">
                 <th className="py-4 ">Order ID</th>
                 <th className="px-4">Paid</th>
-                <th className="px-4">Delivered</th>
+                <th className="px-4">Status</th>
                 <th className="px-8">Price</th>
                 <th className="px-8">Date</th>
-                <th className="px-12"></th>
+                {/* <th className="px-12">Status</th> */}
               </tr>
               {allOrderList.map((item) => {
                 return (
@@ -52,12 +52,13 @@ const AllOrder = ({ allOrderList }) => {
                       <td className="border-b-2 w-2/12 py-2">
                         {item.isDelivered ? (
                           <p className="flex justify-center">
-                            <CheckCircleIcon className="w-6 h-6 text-red-500" />
+                            <CheckCircleIcon className="w-6 h-6 text-green-500" />
                           </p>
                         ) : (
-                          <p className="flex justify-center">
-                            <XCircleIcon className="w-6 h-6 text-red-500" />
-                          </p>
+                          <select name="" id="">
+                            <option value="">In Progress</option>
+                            <option value="">Completed</option>
+                          </select>
                         )}
                       </td>
                       <td className="border-b-2 w-2/12 py-2">
@@ -74,6 +75,12 @@ const AllOrder = ({ allOrderList }) => {
                           Details
                         </button>
                       </td>
+                      {/* <td className="border-b-2 w-2/12 py-2">
+                        <select name="" id="">
+                          <option value="">In Progress</option>
+                          <option value="">Completed</option>
+                        </select>
+                      </td> */}
                     </tr>
                   </>
                 );
