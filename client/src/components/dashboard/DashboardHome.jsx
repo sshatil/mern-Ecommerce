@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile } from "../../redux/actions/userProfileActions";
 import Loading from "../../utils/loading/Loading";
 import DashboardUserOrders from "./DashboardUserOrders";
+import { totalDeliveredProduct } from "../../utils/adminUtils/Dashboard";
+import { totalSell } from "../../utils/adminUtils/Dashboard";
 
 const DashboardHome = () => {
   const dispatch = useDispatch();
@@ -23,21 +25,8 @@ const DashboardHome = () => {
     // const isPaid = paidProduct.filter((f) => f === true).length;
     return isPaid;
   };
-  const totalDeliveredProduct = () => {
-    const deliveredProduct = orderList.map(
-      (delivered) => delivered.isDelivered
-    );
-    const isDelivered = deliveredProduct.filter(Boolean).length;
-    // const isPaid = paidProduct.filter((f) => f === true).length;
-    return isDelivered;
-  };
-  const totalSpend = () => {
-    const totalPrice = orderList.reduce(
-      (accumulator, currentValue) => accumulator + currentValue.totalPrice,
-      0
-    );
-    return totalPrice.toFixed(2);
-  };
+  const deliveredProduct = totalDeliveredProduct(orderList);
+  const totalSpend = totalSell(orderList);
   return (
     <div>
       <div className="grid grid-col-2 md:grid-cols-4 sm:grid-cols-2 gap-4">
@@ -51,7 +40,7 @@ const DashboardHome = () => {
         </div>
         <div className="p-3 text-center bg-gray-200 rounded-md">
           <h1 className="text-sm font-semibold">Received Product</h1>
-          <p className="font-semibold">{totalDeliveredProduct()}</p>
+          <p className="font-semibold">{deliveredProduct}</p>
         </div>
         <div className="p-3 text-center bg-gray-200 rounded-md">
           <h1 className="text-sm font-semibold">Total Spend</h1>

@@ -37,10 +37,7 @@ const AllOrder = ({ allOrderList }) => {
               {allOrderList.map((item) => {
                 return (
                   <>
-                    <tr
-                      className="w-9 text-center cursor-pointer"
-                      key={item._id}
-                    >
+                    <tr className="w-9 text-center" key={item._id}>
                       {/* <td>{item.totalPrice}</td> */}
                       <td className="border-b-2 w-2/12 md:pl-4 sm:pl-4 pr-10 py-2">
                         {item._id}
@@ -72,7 +69,7 @@ const AllOrder = ({ allOrderList }) => {
                           //   </option>
                           // </select>
                           <button onClick={() => handleDelivered(item._id)}>
-                            c
+                            Pending
                           </button>
                         )}
                       </td>
