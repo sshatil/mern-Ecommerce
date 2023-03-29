@@ -1,4 +1,4 @@
-import { GET_USER_PROFILE, UPDATE_USER_PROFILE } from "../types";
+import { GET_USER_PROFILE, LOGOUT_USER, UPDATE_USER_PROFILE } from "../types";
 
 export const userProfile = (state = { user: {}, loading: true }, action) => {
   const { type, payload } = action;
@@ -13,6 +13,12 @@ export const userProfile = (state = { user: {}, loading: true }, action) => {
       return {
         ...state,
         user: payload,
+        loading: false,
+      };
+    case LOGOUT_USER:
+      return {
+        ...state,
+        user: {},
         loading: false,
       };
     default:

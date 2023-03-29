@@ -114,8 +114,11 @@ export default function Navbar() {
                 <div>
                   <Menu.Button className="bg-gray-800 flex text-sm rounded-full">
                     <span className="sr-only">Open user menu</span>
-                    {/* <UserCircleIcon className="h-8 w-8 text-white" /> */}
-                    {image}
+                    {Object.keys(user).length === 0 ? (
+                      <UserCircleIcon className="h-8 w-8 text-white" />
+                    ) : (
+                      image
+                    )}
                   </Menu.Button>
                 </div>
                 <Transition

@@ -26,8 +26,6 @@ const UserProfile = () => {
     dispatch(updateUserProfile(formData, toast));
   };
 
-  const image = avatar(user, 14, 14, "2xl");
-
   if (loading) {
     return (
       <div className="flex justify-center">
@@ -35,6 +33,7 @@ const UserProfile = () => {
       </div>
     );
   }
+  const image = avatar(user, 14, 14, "2xl");
   return (
     <>
       <div className="">
@@ -42,7 +41,10 @@ const UserProfile = () => {
         <h3 className="text-lg font-bold border-b-2 my-4">
           Personal Information
         </h3>
-        <div className="">{image}</div>
+        <div className="">
+          <div className="">{image}</div>
+          <p>{user.name}</p>
+        </div>
         <div className="max-w-2xl mx-auto mt-10">
           <UpdateProfileForm
             formData={formData}
