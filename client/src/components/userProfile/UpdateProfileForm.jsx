@@ -1,4 +1,10 @@
-const UpdateProfileForm = ({ formData, setFormData, handleUpdateProfile }) => {
+const UpdateProfileForm = ({
+  formData,
+  setFormData,
+  handleUpdateProfile,
+  setShowUpdate,
+  showUpdate,
+}) => {
   const handleFormData = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -60,6 +66,13 @@ const UpdateProfileForm = ({ formData, setFormData, handleUpdateProfile }) => {
           className="border btn-color p-2 rounded-md text-lg  text-white"
         >
           Update Profile
+        </button>
+        <button
+          type="button"
+          onClick={() => setShowUpdate(!showUpdate)}
+          className="border bg-red-600 p-2 rounded-md text-lg  text-white ml-4"
+        >
+          Cancel
         </button>
       </form>
     </div>
