@@ -7,6 +7,7 @@ import logo from "../assets/Icon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/actions/authActions";
 import { handleOpenCartPage } from "../redux/actions/cartActions";
+import { avatar } from "./Avatar";
 
 const isNotActiveStyle =
   "text-gray-300 hover:text-white px-3 py-2 text-lg font-sm";
@@ -17,7 +18,9 @@ export default function Navbar() {
   const dispatch = useDispatch();
   const { isAuthenticated, isAdmin } = useSelector((state) => state.auth);
   const { cartItems } = useSelector((state) => state.cart);
+  const { user } = useSelector((state) => state.userProfile);
   const navigate = useNavigate();
+  const image = avatar(user, 8, 8);
   const setOpen = () => {
     dispatch(handleOpenCartPage());
   };
@@ -109,9 +112,10 @@ export default function Navbar() {
               {/* dropdown */}
               <Menu as="div" className="ml-3 relative">
                 <div>
-                  <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none">
+                  <Menu.Button className="bg-gray-800 flex text-sm rounded-full">
                     <span className="sr-only">Open user menu</span>
-                    <UserCircleIcon className="h-8 w-8 text-white" />
+                    {/* <UserCircleIcon className="h-8 w-8 text-white" /> */}
+                    {image}
                   </Menu.Button>
                 </div>
                 <Transition

@@ -42,7 +42,6 @@ const Products = ({ showSidebar, setShowSidebar }) => {
   const handlePageClick = (event) => {
     setPageNumbers(event.selected + 1);
   };
-  console.log(pageNumbers);
   const { isLoading } = useSelector((state) => state.product);
   if (isLoading) {
     return <ProductLoading />;

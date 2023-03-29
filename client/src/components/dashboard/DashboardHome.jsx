@@ -44,7 +44,7 @@ const DashboardHome = () => {
         </div>
         <div className="p-3 text-center bg-gray-200 rounded-md">
           <h1 className="text-sm font-semibold">Total Spend</h1>
-          <p className="font-semibold">$ {totalSpend()}</p>
+          <p className="font-semibold">$ {totalSpend}</p>
         </div>
       </div>
       <div className="">

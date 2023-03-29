@@ -65,7 +65,7 @@ const DashboardUserOrders = () => {
                       <td className="border-b-2 w-2/12 py-2">
                         {item.isDelivered ? (
                           <p className="flex justify-center">
-                            <CheckCircleIcon className="w-6 h-6 text-red-500" />
+                            <CheckCircleIcon className="w-6 h-6 text-green-500" />
                           </p>
                         ) : (
                           <p className="flex justify-center">
