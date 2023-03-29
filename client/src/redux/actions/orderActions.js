@@ -30,7 +30,7 @@ export const createUserOrder = (data, toast) => async (dispatch, getState) => {
       JSON.stringify(getState().cart.cartItems)
     );
   } catch (error) {
-    toast.error(error.response.data.message);
+    toast.error("Fill all the input field");
   }
 };
 export const userOrderDetails = (id, toast) => async (dispatch, getState) => {
