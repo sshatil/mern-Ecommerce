@@ -10,7 +10,7 @@ const RatingStar = ({ value, setRating }) => {
       className="flex items-center cursor-pointer my-1"
       onClick={() => setRating(value)}
     >
-      <div className="">
+      <div className="mr-1">
         <input type="radio" name="rating" id={value} />
       </div>
       <label htmlFor={value} className="cursor-pointer">

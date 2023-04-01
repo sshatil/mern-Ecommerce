@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Register from "./pages/auth/Register";
 import Home from "./pages/Home";
 import ProductDetails from "./pages/ProductDetails";
@@ -12,6 +12,7 @@ import PrivateRoute from "./utils/PrivateRoute";
 import Dashboard from "./pages/dashboard/Dashboard";
 import OrderDetails from "./pages/OrderDetails";
 import AdminDashboard from "./pages/adminPanel/AdminDashboard";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
   return (
@@ -57,6 +58,9 @@ const App = () => {
             </PrivateRoute>
           }
         />
+        {/* <Route path="/404" element={<NotFound />} />
+        <Route path="*" element={<Navigate to="/404" replace />} /> */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
