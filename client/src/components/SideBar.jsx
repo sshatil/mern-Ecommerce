@@ -54,12 +54,23 @@ const SideBar = ({ showSidebar, setShowSidebar }) => {
               className="text-md font-medium cursor-pointer"
               onClick={() => getProductsByCategory()}
             >
-              All
+              <input type="radio" name="category" id="all" />
+              <label htmlFor="all" className="cursor-pointer ml-1">
+                All
+              </label>
             </p>
             {category.map((list, i) => (
-              <div key={i} onClick={() => getProductsByCategory(list)}>
-                <p className="text-md font-medium cursor-pointer">
-                  {capitalizeFirst(list)}
+              <div key={i}>
+                <p className="text-md font-medium">
+                  <input
+                    type="radio"
+                    id={i}
+                    name="category"
+                    onClick={() => getProductsByCategory(list)}
+                  />
+                  <label htmlFor={i} className="cursor-pointer ml-1">
+                    {capitalizeFirst(list)}
+                  </label>
                 </p>
               </div>
             ))}
