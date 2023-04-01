@@ -64,11 +64,11 @@ const SideBar = ({ showSidebar, setShowSidebar }) => {
                 <p className="text-md font-medium">
                   <input
                     type="radio"
-                    id={i}
+                    id={list}
                     name="category"
                     onClick={() => getProductsByCategory(list)}
                   />
-                  <label htmlFor={i} className="cursor-pointer ml-1">
+                  <label htmlFor={list} className="cursor-pointer ml-1">
                     {capitalizeFirst(list)}
                   </label>
                 </p>
