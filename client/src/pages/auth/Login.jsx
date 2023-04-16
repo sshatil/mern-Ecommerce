@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Layout from "../../utils/Layout";
 
 import { EyeOffIcon } from "@heroicons/react/solid";
 import { EyeIcon } from "@heroicons/react/solid";
 import { loginUser, registerUser } from "../../redux/actions/authActions";
 import toast from "react-hot-toast";
+import Container from "../../utils/Container";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const Login = () => {
   };
 
   return (
-    <Layout>
+    <Container>
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div>
@@ -111,7 +111,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </Container>
   );
 };
 

@@ -8,7 +8,7 @@ import {
   userOrderDetails,
   userOrderPayment,
 } from "../redux/actions/orderActions";
-import Layout from "../utils/Layout";
+import Container from "../utils/Container";
 import toast from "react-hot-toast";
 import Loading from "../utils/loading/Loading";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
@@ -77,7 +77,7 @@ const OrderDetails = () => {
   }
 
   return (
-    <Layout>
+    <Container>
       <div className="pt-20 md:flex mb-10">
         <div className="md:w-8/12 md:mr-2">
           <ShippingDetails />
@@ -148,7 +148,7 @@ const OrderDetails = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </Container>
   );
 };
 

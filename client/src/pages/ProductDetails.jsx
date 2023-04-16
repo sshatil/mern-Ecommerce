@@ -4,12 +4,12 @@ import { RadioGroup } from "@headlessui/react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleProduct } from "../redux/actions/proudctActions";
-import Layout from "../utils/Layout";
 import SingleProduct from "../components/SingleProduct";
 import { addToCart, handleOpenCartPage } from "../redux/actions/cartActions";
 import Loading from "../utils/loading/Loading";
 import ProductReviews from "../components/productDetails/ProductReviews";
 import ProductReviewForm from "../components/productDetails/ProductReviewForm";
+import Container from "../utils/Container";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -51,7 +51,7 @@ const ProductDetails = () => {
     dispatch(handleOpenCartPage());
   };
   return (
-    <Layout>
+    <Container>
       <div className="pt-20">
         {loading ? (
           <div>
@@ -129,7 +129,7 @@ const ProductDetails = () => {
           </div>
         )}
       </div>
-    </Layout>
+    </Container>
   );
 };
 

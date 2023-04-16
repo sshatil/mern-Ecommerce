@@ -4,9 +4,9 @@ import CartProducts from "../components/checkout/CartProducts";
 import PaymentMethods from "../components/checkout/PaymentMethods";
 import ShippingAddressForm from "../components/checkout/ShippingAddressForm";
 import { createUserOrder } from "../redux/actions/orderActions";
-import Layout from "../utils/Layout";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import Container from "../utils/Container";
 const Checkout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ const Checkout = () => {
     return navigate(`/order/${order._id}`);
   }
   return (
-    <Layout>
+    <Container>
       <div className="md:flex md:gap-10 pt-16">
         <div className="md:w-6/12 pr-2">
           <CartProducts />
@@ -93,7 +93,7 @@ const Checkout = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </Container>
   );
 };
 
