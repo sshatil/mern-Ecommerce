@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Products from "../components/Products";
 import SideBar from "../components/SideBar";
 import { getUserProfile } from "../redux/actions/userProfileActions";
+import Footer from "../utils/Footer";
 
 const Home = () => {
   const [showSidebar, setShowSidebar] = useState(true);
@@ -22,6 +23,7 @@ const Home = () => {
         <SideBar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
         <Products showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
       </div>
+      <Footer />
     </>
   );
 };
