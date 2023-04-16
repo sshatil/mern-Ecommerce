@@ -7,6 +7,7 @@ import { createUserOrder } from "../redux/actions/orderActions";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Container from "../utils/Container";
+import Layout from "../utils/Layout";
 const Checkout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -50,50 +51,55 @@ const Checkout = () => {
     return navigate(`/order/${order._id}`);
   }
   return (
-    <Container>
-      <div className="md:flex md:gap-10 pt-16">
-        <div className="md:w-6/12 pr-2">
-          <CartProducts />
-        </div>
-        <div className="md:w-6/12 md:border-l-2 md:pl-4">
-          <ShippingAddressForm formData={formData} setFormData={setFormData} />
-          {/* Payment Method */}
-          <PaymentMethods
-            paymentMethod={paymentMethod}
-            setPaymentMethod={setPaymentMethod}
-          />
-          {/* TODO: make a separate component & reuse order details page */}
-          <div className="mt-7 rounded-md border-gray-200 py-6 my-3 px-6 border">
-            <div className="flex justify-between py-1 text-base font-medium text-gray-900">
-              <p>Subtotal</p>
-              <p>${subtotalPrice}</p>
-            </div>
-            <div className="flex justify-between py-1 text-base font-medium text-gray-900">
-              <p>Shipping</p>
-              <p>${shippingPrice}</p>
-            </div>
-            <div className="flex justify-between py-1 text-base font-medium text-gray-900">
-              <p>Tax</p>
-              <p>${taxPrice}</p>
-            </div>
-            <div className="flex justify-between mt-3 border-t-2 font-semibold text-lg text-gray-900 ">
-              <p>Total Price</p>
-              <p>${totalPrice}</p>
-            </div>
-            <div className="mt-6">
-              <p
-                onClick={handleSubmit}
-                className="flex items-center justify-center rounded-md
+    <Layout>
+      <Container>
+        <div className="md:flex md:gap-10 pt-16">
+          <div className="md:w-6/12 pr-2">
+            <CartProducts />
+          </div>
+          <div className="md:w-6/12 md:border-l-2 md:pl-4 mb-10">
+            <ShippingAddressForm
+              formData={formData}
+              setFormData={setFormData}
+            />
+            {/* Payment Method */}
+            <PaymentMethods
+              paymentMethod={paymentMethod}
+              setPaymentMethod={setPaymentMethod}
+            />
+            {/* TODO: make a separate component & reuse order details page */}
+            <div className="mt-7 rounded-md border-gray-200 py-6 my-3 px-6 border">
+              <div className="flex justify-between py-1 text-base font-medium text-gray-900">
+                <p>Subtotal</p>
+                <p>${subtotalPrice}</p>
+              </div>
+              <div className="flex justify-between py-1 text-base font-medium text-gray-900">
+                <p>Shipping</p>
+                <p>${shippingPrice}</p>
+              </div>
+              <div className="flex justify-between py-1 text-base font-medium text-gray-900">
+                <p>Tax</p>
+                <p>${taxPrice}</p>
+              </div>
+              <div className="flex justify-between mt-3 border-t-2 font-semibold text-lg text-gray-900 ">
+                <p>Total Price</p>
+                <p>${totalPrice}</p>
+              </div>
+              <div className="mt-6">
+                <p
+                  onClick={handleSubmit}
+                  className="flex items-center justify-center rounded-md
                           border border-transparent btn-color px-6 py-3
                           text-base font-medium text-white shadow-sm cursor-pointer"
-              >
-                Checkout
-              </p>
+                >
+                  Checkout
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </Layout>
   );
 };
 
