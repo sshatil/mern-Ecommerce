@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Products from "../components/Products";
 import SideBar from "../components/SideBar";
 import { getUserProfile } from "../redux/actions/userProfileActions";
+import Layout from "../utils/Layout";
 
 const Home = () => {
   const [showSidebar, setShowSidebar] = useState(true);
@@ -16,13 +17,14 @@ const Home = () => {
     }
   }, [dispatch, isAuthenticated]);
   return (
-    <>
+    <Layout>
       <Header />
       <div className="flex gap-1 w-full">
         <SideBar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
         <Products showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
       </div>
-    </>
+      {/* <Footer /> */}
+    </Layout>
   );
 };
 

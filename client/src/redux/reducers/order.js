@@ -18,6 +18,12 @@ export const createOrder = (state = { order: {}, loading: true }, action) => {
         order: payload,
         loading: false,
       };
+    case USER_ORDER_DETAILS:
+      return {
+        ...state,
+        order: {},
+        loading: true,
+      };
     default:
       return state;
   }
